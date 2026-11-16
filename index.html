@@ -558,6 +558,11 @@ p.disclaimer{margin:24px 0 0!important;font-size:13px!important;line-height:1.7!
   .pm-pts>li{padding-left:24px}
   .wrap h3.pm-grp{font-size:24px!important;margin-top:72px!important}
 }
+
+/* —— 长标题换行：YOHAKU 把 .sec-head .lbl 做成 38px 小节标题，但未覆盖原样式的 white-space:nowrap，桌面宽下会冲进右侧目录 —— */
+.wrap{min-width:0;overflow-wrap:anywhere}
+.wrap .sec-head,.wrap .entry.pm-entry p.name,.wrap h3.pm-grp{min-width:0;max-width:100%;overflow-wrap:anywhere}
+.wrap .sec-head .lbl,.wrap .sec-head .zh-lbl{white-space:normal!important;overflow-wrap:anywhere;max-width:100%;display:inline-block;min-width:0}
 </style><!-- /PM_CSS --><style>/* PM_EXTRA */
 .arch-m{display:none}
 @media (max-width:1179px){
