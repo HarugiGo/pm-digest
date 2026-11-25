@@ -563,6 +563,64 @@ p.disclaimer{margin:24px 0 0!important;font-size:13px!important;line-height:1.7!
 .wrap{min-width:0;overflow-wrap:anywhere}
 .wrap .sec-head,.wrap .entry.pm-entry p.name,.wrap h3.pm-grp{min-width:0;max-width:100%;overflow-wrap:anywhere}
 .wrap .sec-head .lbl,.wrap .sec-head .zh-lbl{white-space:normal!important;overflow-wrap:anywhere;max-width:100%;display:inline-block;min-width:0}
+
+/* ===== 手动书签：低干扰，不改变米白衬线版式 ===== */
+.wrap .entry.pm-entry .pm-entry-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px 16px;margin:0 0 14px;flex-wrap:wrap}
+.wrap .entry.pm-entry .pm-entry-head p.pm-serial-no,
+.wrap .entry.pm-entry .pm-entry-head p.name{margin:0!important;flex:1 1 auto;min-width:0}
+.wrap .entry.pm-entry button.r-mark-here,
+.rail button.r-clear-mark,
+.arch-m button.r-clear-mark{
+  appearance:none;-webkit-appearance:none;
+  background:none!important;border:0!important;box-shadow:none!important;
+  padding:6px 0;margin:0;cursor:pointer;
+  font:400 12px/1.6 inherit!important;
+  color:#8a8478!important;letter-spacing:.06em!important;
+  text-decoration:none!important;white-space:nowrap;flex:0 0 auto
+}
+.wrap .entry.pm-entry button.r-mark-here:hover,
+.rail button.r-clear-mark:hover,
+.arch-m button.r-clear-mark:hover{color:#23211d!important}
+.wrap .entry.pm-entry button.r-mark-here:focus-visible,
+.rail a.r-last-read:focus-visible,
+.arch-m a.r-last-read:focus-visible,
+.rail button.r-clear-mark:focus-visible,
+.arch-m button.r-clear-mark:focus-visible{
+  outline:1px solid #23211d;outline-offset:3px
+}
+.wrap .entry.pm-entry.r-bookmarked{scroll-margin-top:24px}
+
+.rail .a-list li,
+.arch-m .a-list li{display:flex;align-items:center;gap:8px}
+.rail .a-list li > a:first-of-type,
+.arch-m .a-list li > a:first-of-type{flex:1 1 auto;min-width:0}
+.r-bookmark-slot{display:inline-flex;align-items:baseline;gap:6px;flex:0 0 auto;margin-left:2px}
+.rail a.r-last-read,
+.arch-m a.r-last-read{
+  display:inline!important;flex-direction:unset!important;
+  padding:0!important;border:0!important;background:none!important;
+  color:#6f695e!important;font-size:11px!important;font-weight:400!important;
+  letter-spacing:.04em!important;text-decoration:none!important;
+  white-space:nowrap;line-height:1.4
+}
+.rail a.r-last-read:hover,
+.arch-m a.r-last-read:hover{color:#23211d!important;padding-left:0!important}
+.rail button.r-clear-mark,
+.arch-m button.r-clear-mark{padding:0;letter-spacing:.04em!important;font-size:11px!important}
+
+.r-bookmark-status{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0
+}
+
+@media (max-width:1179px){
+  .wrap .entry.pm-entry{scroll-margin-top:24px}
+  .arch-m .a-list li.r-has-bookmark{flex-wrap:wrap}
+}
+@media (max-width:640px){
+  .wrap .entry.pm-entry .pm-entry-head{margin-bottom:12px}
+  .wrap .entry.pm-entry button.r-mark-here{padding:8px 0}
+}
 </style><!-- /PM_CSS --><style>/* PM_EXTRA */
 .arch-m{display:none}
 @media (max-width:1179px){
@@ -581,31 +639,37 @@ p.disclaimer{margin:24px 0 0!important;font-size:13px!important;line-height:1.7!
 
 
 
-<aside class="rail" aria-label="往期归档">
+<aside class="rail" aria-label="往期归档" data-digest-date="2026-11-20">
   <div class="rail-inner">
     <div class="rail-head">
       <span class="rail-lbl"><span class="rail-zh">往期</span>Archive</span>
-      <span class="rail-count">17 期</span>
+      <span class="rail-count">22 期</span>
     </div>
     <ul class="a-list">
-      <li class="a-current"><a href="digest-2026-11-20.html"><span class="a-date">2026-11-20</span><span class="a-zh">周五 · 2026年11月20日</span></a></li>
-      <li><a href="digest-2026-11-19.html"><span class="a-date">2026-11-19</span><span class="a-zh">周四 · 2026年11月19日</span></a></li>
-      <li><a href="digest-2026-11-18.html"><span class="a-date">2026-11-18</span><span class="a-zh">周三 · 2026年11月18日</span></a></li>
-      <li><a href="digest-2026-11-17.html"><span class="a-date">2026-11-17</span><span class="a-zh">周二 · 2026年11月17日</span></a></li>
-      <li><a href="digest-2026-11-16.html"><span class="a-date">2026-11-16</span><span class="a-zh">周一 · 2026年11月16日</span></a></li>
-      <li><a href="digest-2026-11-15.html"><span class="a-date">2026-11-15</span><span class="a-zh">周日 · 2026年11月15日</span></a></li>
-      <li><a href="digest-2026-11-14.html"><span class="a-date">2026-11-14</span><span class="a-zh">周六 · 2026年11月14日</span></a></li>
-      <li><a href="digest-2026-11-13.html"><span class="a-date">2026-11-13</span><span class="a-zh">周五 · 2026年11月13日</span></a></li>
-      <li><a href="digest-2026-11-12.html"><span class="a-date">2026-11-12</span><span class="a-zh">周四 · 2026年11月12日</span></a></li>
-      <li><a href="digest-2026-11-11.html"><span class="a-date">2026-11-11</span><span class="a-zh">周三 · 2026年11月11日</span></a></li>
-      <li><a href="digest-2026-11-10.html"><span class="a-date">2026-11-10</span><span class="a-zh">周二 · 2026年11月10日</span></a></li>
-      <li><a href="digest-2026-11-09.html"><span class="a-date">2026-11-09</span><span class="a-zh">周一 · 2026年11月9日</span></a></li>
-      <li><a href="digest-2026-11-08.html"><span class="a-date">2026-11-08</span><span class="a-zh">周日 · 2026年11月8日</span></a></li>
-      <li><a href="digest-2026-11-07.html"><span class="a-date">2026-11-07</span><span class="a-zh">周六 · 2026年11月7日</span></a></li>
-      <li><a href="digest-2026-11-06.html"><span class="a-date">2026-11-06</span><span class="a-zh">周五 · 2026年11月6日</span></a></li>
-      <li><a href="digest-2026-11-05.html"><span class="a-date">2026-11-05</span><span class="a-zh">周四 · 2026年11月5日</span></a></li>
-      <li><a href="digest-2026-11-04.html"><span class="a-date">2026-11-04</span><span class="a-zh">周三 · 2026年11月4日</span></a></li>
+      <li data-date="2026-11-25"><a href="digest-2026-11-25.html"><span class="a-date">2026-11-25</span><span class="a-zh">周三 · 2026年11月25日</span></a></li>
+      <li data-date="2026-11-24"><a href="digest-2026-11-24.html"><span class="a-date">2026-11-24</span><span class="a-zh">周二 · 2026年11月24日</span></a></li>
+      <li data-date="2026-11-23"><a href="digest-2026-11-23.html"><span class="a-date">2026-11-23</span><span class="a-zh">周一 · 2026年11月23日</span></a></li>
+      <li data-date="2026-11-22"><a href="digest-2026-11-22.html"><span class="a-date">2026-11-22</span><span class="a-zh">周日 · 2026年11月22日</span></a></li>
+      <li data-date="2026-11-21"><a href="digest-2026-11-21.html"><span class="a-date">2026-11-21</span><span class="a-zh">周六 · 2026年11月21日</span></a></li>
+      <li class="a-current" data-date="2026-11-20"><a href="digest-2026-11-20.html"><span class="a-date">2026-11-20</span><span class="a-zh">周五 · 2026年11月20日</span></a></li>
+      <li data-date="2026-11-19"><a href="digest-2026-11-19.html"><span class="a-date">2026-11-19</span><span class="a-zh">周四 · 2026年11月19日</span></a></li>
+      <li data-date="2026-11-18"><a href="digest-2026-11-18.html"><span class="a-date">2026-11-18</span><span class="a-zh">周三 · 2026年11月18日</span></a></li>
+      <li data-date="2026-11-17"><a href="digest-2026-11-17.html"><span class="a-date">2026-11-17</span><span class="a-zh">周二 · 2026年11月17日</span></a></li>
+      <li data-date="2026-11-16"><a href="digest-2026-11-16.html"><span class="a-date">2026-11-16</span><span class="a-zh">周一 · 2026年11月16日</span></a></li>
+      <li data-date="2026-11-15"><a href="digest-2026-11-15.html"><span class="a-date">2026-11-15</span><span class="a-zh">周日 · 2026年11月15日</span></a></li>
+      <li data-date="2026-11-14"><a href="digest-2026-11-14.html"><span class="a-date">2026-11-14</span><span class="a-zh">周六 · 2026年11月14日</span></a></li>
+      <li data-date="2026-11-13"><a href="digest-2026-11-13.html"><span class="a-date">2026-11-13</span><span class="a-zh">周五 · 2026年11月13日</span></a></li>
+      <li data-date="2026-11-12"><a href="digest-2026-11-12.html"><span class="a-date">2026-11-12</span><span class="a-zh">周四 · 2026年11月12日</span></a></li>
+      <li data-date="2026-11-11"><a href="digest-2026-11-11.html"><span class="a-date">2026-11-11</span><span class="a-zh">周三 · 2026年11月11日</span></a></li>
+      <li data-date="2026-11-10"><a href="digest-2026-11-10.html"><span class="a-date">2026-11-10</span><span class="a-zh">周二 · 2026年11月10日</span></a></li>
+      <li data-date="2026-11-09"><a href="digest-2026-11-09.html"><span class="a-date">2026-11-09</span><span class="a-zh">周一 · 2026年11月9日</span></a></li>
+      <li data-date="2026-11-08"><a href="digest-2026-11-08.html"><span class="a-date">2026-11-08</span><span class="a-zh">周日 · 2026年11月8日</span></a></li>
+      <li data-date="2026-11-07"><a href="digest-2026-11-07.html"><span class="a-date">2026-11-07</span><span class="a-zh">周六 · 2026年11月7日</span></a></li>
+      <li data-date="2026-11-06"><a href="digest-2026-11-06.html"><span class="a-date">2026-11-06</span><span class="a-zh">周五 · 2026年11月6日</span></a></li>
+      <li data-date="2026-11-05"><a href="digest-2026-11-05.html"><span class="a-date">2026-11-05</span><span class="a-zh">周四 · 2026年11月5日</span></a></li>
+      <li data-date="2026-11-04"><a href="digest-2026-11-04.html"><span class="a-date">2026-11-04</span><span class="a-zh">周三 · 2026年11月4日</span></a></li>
     </ul>
+    <p class="r-bookmark-status" role="status" aria-live="polite"></p>
   </div>
 </aside>
 <script src="archive.js"></script>
@@ -624,23 +688,28 @@ p.disclaimer{margin:24px 0 0!important;font-size:13px!important;line-height:1.7!
     </div>
   </header>
 <details class="arch-m"><summary>往期归档</summary><ul class="a-list">
-      <li class="a-current"><a href="digest-2026-11-20.html"><span class="a-date">2026-11-20</span><span class="a-zh">周五 · 2026年11月20日</span></a></li>
-      <li><a href="digest-2026-11-19.html"><span class="a-date">2026-11-19</span><span class="a-zh">周四 · 2026年11月19日</span></a></li>
-      <li><a href="digest-2026-11-18.html"><span class="a-date">2026-11-18</span><span class="a-zh">周三 · 2026年11月18日</span></a></li>
-      <li><a href="digest-2026-11-17.html"><span class="a-date">2026-11-17</span><span class="a-zh">周二 · 2026年11月17日</span></a></li>
-      <li><a href="digest-2026-11-16.html"><span class="a-date">2026-11-16</span><span class="a-zh">周一 · 2026年11月16日</span></a></li>
-      <li><a href="digest-2026-11-15.html"><span class="a-date">2026-11-15</span><span class="a-zh">周日 · 2026年11月15日</span></a></li>
-      <li><a href="digest-2026-11-14.html"><span class="a-date">2026-11-14</span><span class="a-zh">周六 · 2026年11月14日</span></a></li>
-      <li><a href="digest-2026-11-13.html"><span class="a-date">2026-11-13</span><span class="a-zh">周五 · 2026年11月13日</span></a></li>
-      <li><a href="digest-2026-11-12.html"><span class="a-date">2026-11-12</span><span class="a-zh">周四 · 2026年11月12日</span></a></li>
-      <li><a href="digest-2026-11-11.html"><span class="a-date">2026-11-11</span><span class="a-zh">周三 · 2026年11月11日</span></a></li>
-      <li><a href="digest-2026-11-10.html"><span class="a-date">2026-11-10</span><span class="a-zh">周二 · 2026年11月10日</span></a></li>
-      <li><a href="digest-2026-11-09.html"><span class="a-date">2026-11-09</span><span class="a-zh">周一 · 2026年11月9日</span></a></li>
-      <li><a href="digest-2026-11-08.html"><span class="a-date">2026-11-08</span><span class="a-zh">周日 · 2026年11月8日</span></a></li>
-      <li><a href="digest-2026-11-07.html"><span class="a-date">2026-11-07</span><span class="a-zh">周六 · 2026年11月7日</span></a></li>
-      <li><a href="digest-2026-11-06.html"><span class="a-date">2026-11-06</span><span class="a-zh">周五 · 2026年11月6日</span></a></li>
-      <li><a href="digest-2026-11-05.html"><span class="a-date">2026-11-05</span><span class="a-zh">周四 · 2026年11月5日</span></a></li>
-      <li><a href="digest-2026-11-04.html"><span class="a-date">2026-11-04</span><span class="a-zh">周三 · 2026年11月4日</span></a></li>
+      <li data-date="2026-11-25"><a href="digest-2026-11-25.html"><span class="a-date">2026-11-25</span><span class="a-zh">周三 · 2026年11月25日</span></a></li>
+      <li data-date="2026-11-24"><a href="digest-2026-11-24.html"><span class="a-date">2026-11-24</span><span class="a-zh">周二 · 2026年11月24日</span></a></li>
+      <li data-date="2026-11-23"><a href="digest-2026-11-23.html"><span class="a-date">2026-11-23</span><span class="a-zh">周一 · 2026年11月23日</span></a></li>
+      <li data-date="2026-11-22"><a href="digest-2026-11-22.html"><span class="a-date">2026-11-22</span><span class="a-zh">周日 · 2026年11月22日</span></a></li>
+      <li data-date="2026-11-21"><a href="digest-2026-11-21.html"><span class="a-date">2026-11-21</span><span class="a-zh">周六 · 2026年11月21日</span></a></li>
+      <li class="a-current" data-date="2026-11-20"><a href="digest-2026-11-20.html"><span class="a-date">2026-11-20</span><span class="a-zh">周五 · 2026年11月20日</span></a></li>
+      <li data-date="2026-11-19"><a href="digest-2026-11-19.html"><span class="a-date">2026-11-19</span><span class="a-zh">周四 · 2026年11月19日</span></a></li>
+      <li data-date="2026-11-18"><a href="digest-2026-11-18.html"><span class="a-date">2026-11-18</span><span class="a-zh">周三 · 2026年11月18日</span></a></li>
+      <li data-date="2026-11-17"><a href="digest-2026-11-17.html"><span class="a-date">2026-11-17</span><span class="a-zh">周二 · 2026年11月17日</span></a></li>
+      <li data-date="2026-11-16"><a href="digest-2026-11-16.html"><span class="a-date">2026-11-16</span><span class="a-zh">周一 · 2026年11月16日</span></a></li>
+      <li data-date="2026-11-15"><a href="digest-2026-11-15.html"><span class="a-date">2026-11-15</span><span class="a-zh">周日 · 2026年11月15日</span></a></li>
+      <li data-date="2026-11-14"><a href="digest-2026-11-14.html"><span class="a-date">2026-11-14</span><span class="a-zh">周六 · 2026年11月14日</span></a></li>
+      <li data-date="2026-11-13"><a href="digest-2026-11-13.html"><span class="a-date">2026-11-13</span><span class="a-zh">周五 · 2026年11月13日</span></a></li>
+      <li data-date="2026-11-12"><a href="digest-2026-11-12.html"><span class="a-date">2026-11-12</span><span class="a-zh">周四 · 2026年11月12日</span></a></li>
+      <li data-date="2026-11-11"><a href="digest-2026-11-11.html"><span class="a-date">2026-11-11</span><span class="a-zh">周三 · 2026年11月11日</span></a></li>
+      <li data-date="2026-11-10"><a href="digest-2026-11-10.html"><span class="a-date">2026-11-10</span><span class="a-zh">周二 · 2026年11月10日</span></a></li>
+      <li data-date="2026-11-09"><a href="digest-2026-11-09.html"><span class="a-date">2026-11-09</span><span class="a-zh">周一 · 2026年11月9日</span></a></li>
+      <li data-date="2026-11-08"><a href="digest-2026-11-08.html"><span class="a-date">2026-11-08</span><span class="a-zh">周日 · 2026年11月8日</span></a></li>
+      <li data-date="2026-11-07"><a href="digest-2026-11-07.html"><span class="a-date">2026-11-07</span><span class="a-zh">周六 · 2026年11月7日</span></a></li>
+      <li data-date="2026-11-06"><a href="digest-2026-11-06.html"><span class="a-date">2026-11-06</span><span class="a-zh">周五 · 2026年11月6日</span></a></li>
+      <li data-date="2026-11-05"><a href="digest-2026-11-05.html"><span class="a-date">2026-11-05</span><span class="a-zh">周四 · 2026年11月5日</span></a></li>
+      <li data-date="2026-11-04"><a href="digest-2026-11-04.html"><span class="a-date">2026-11-04</span><span class="a-zh">周三 · 2026年11月4日</span></a></li>
 </ul></details>
 <details class="toc-m"><summary>本期目录</summary><ul><li class="t-sec"><a href="#s-1">经典<span class="n">6</span></a><ul><li class="t-it"><a href="#e-serial">张小龙《2019 微信公开课 Pro 版演讲》</a></li><li class="t-it"><a href="#p-1">原文</a></li><li class="t-it"><a href="#p-2">背景</a></li><li class="t-it"><a href="#p-3">核心观点</a></li><li class="t-it"><a href="#p-4">对 PM 的启发</a></li><li class="t-it"><a href="#p-5">下期预告</a></li></ul></li><li class="t-sec"><a href="#s-2">近期<span class="n">4</span></a><ul><li class="t-it"><a href="#g-deep">精读</a></li><li class="t-it"><a href="#r1">AI功能上线后没人用，产品经理怎么办？</a></li><li class="t-it"><a href="#r2">AI产品经理做竞品：从用户的选择出发，不是从技术出发</a></li><li class="t-it"><a href="#g-brief">简讯</a></li></ul></li></ul></details>
 <div class="sec-head" id="s-1">
@@ -648,8 +717,11 @@ p.disclaimer{margin:24px 0 0!important;font-size:13px!important;line-height:1.7!
 </div>
 <div class="sec-sum"><p class="pm-sum">逐段精读连载</p></div>
 
-<article class="entry pm-entry pm-serial" id="e-serial">
-  <p class="pm-serial-no">连载 · 第<span class="pm-n">17</span>期<span class="pm-of">共约 26 期</span></p>
+<article class="entry pm-entry pm-serial" id="e-serial" data-entry-id="e-serial">
+  <div class="pm-entry-head">
+    <p class="pm-serial-no">连载 · 第<span class="pm-n">17</span>期<span class="pm-of">共约 26 期</span></p>
+    <button type="button" class="r-mark-here" data-entry-id="e-serial" aria-pressed="false" aria-label="标记读到这里，连载">标记读到这里</button>
+  </div>
   <h3 class="name">张小龙《2019 微信公开课 Pro 版演讲》</h3>
   <div class="pm-meta">
     <p class="pm-scope"><span class="pm-k">本期范围</span>从「从另外一个点上可以看到，这是朋友圈跟之前的记录文字是不一样的地方」讲到「甚至是胡乱拍的视频的地方」。主题：记录并非需求；视频动态（1）——分享才使拍摄有意义；不做视频相册；对 1.0 的耐心；「保留一天」被误解。</p>
@@ -712,8 +784,11 @@ p.disclaimer{margin:24px 0 0!important;font-size:13px!important;line-height:1.7!
 <div class="sec-sum"><p class="pm-sum">2026-11-13 至 2026-11-19</p></div>
 
 <h3 class="pm-grp" id="g-deep">精读</h3>
-<article class="entry pm-entry pm-deep" id="r1">
-  <p class="name">AI功能上线后没人用，产品经理怎么办？<span class="src">人人都是产品经理／老猫</span></p>
+<article class="entry pm-entry pm-deep" id="r1" data-entry-id="r1">
+  <div class="pm-entry-head">
+    <p class="name">AI功能上线后没人用，产品经理怎么办？<span class="src">人人都是产品经理／老猫</span></p>
+    <button type="button" class="r-mark-here" data-entry-id="r1" aria-pressed="false" aria-label="标记读到这里，R1">标记读到这里</button>
+  </div>
   <p class="pm-src">人人都是产品经理，作者栏写「AI产品经理老猫」，文末署「本文由 @利平 原创发布」，2026-11-19。</p>
   <p class="pm-note"><span class="pm-k">依据</span>已读完该文全文。文中引用的 Userflow 调研比例、GitHub Copilot 进入率与采纳率、白鲸开源内部调研，以及字节内部代码生成工具的采纳率，均来自作者转述或举例，本期不另作独立核实。</p>
   <p class="pm-label">核心观点</p>
@@ -729,8 +804,11 @@ p.disclaimer{margin:24px 0 0!important;font-size:13px!important;line-height:1.7!
   <p class="pm-text">AI 功能上线后没人用，不必先默认是入口问题。可以先把「发现了没有」「用完了没有」「还会不会再来」分开看。若人已经进来并生成了结果，却几乎不用这个结果，再改引导也解决不了。重复使用率低时，更值得看的是输出是否经得起用、验证成本高不高，以及这个功能是不是本来就在处理高难度任务。把信任只当成「教育用户」，而不去面对质量和成本，诊断会停在半路。</p>
   <p class="pm-links"><a href="https://www.woshipm.com/ai/6496841.html">原文</a></p>
 </article>
-<article class="entry pm-entry pm-deep" id="r2">
-  <p class="name">AI产品经理做竞品：从用户的选择出发，不是从技术出发<span class="src">人人都是产品经理／阿宝</span></p>
+<article class="entry pm-entry pm-deep" id="r2" data-entry-id="r2">
+  <div class="pm-entry-head">
+    <p class="name">AI产品经理做竞品：从用户的选择出发，不是从技术出发<span class="src">人人都是产品经理／阿宝</span></p>
+    <button type="button" class="r-mark-here" data-entry-id="r2" aria-pressed="false" aria-label="标记读到这里，R2">标记读到这里</button>
+  </div>
   <p class="pm-src">人人都是产品经理，作者阿宝，2026-11-19。</p>
   <p class="pm-note"><span class="pm-k">依据</span>已读完该文全文。文中创业团队竞品分析的案例、具体产品选择和用户规模等细节，均来自作者自述的项目经验，本期不另作独立核实。</p>
   <p class="pm-label">核心观点</p>
@@ -748,23 +826,35 @@ p.disclaimer{margin:24px 0 0!important;font-size:13px!important;line-height:1.7!
   <p class="pm-links"><a href="https://www.woshipm.com/share/6496906.html">原文</a></p>
 </article>
 <h3 class="pm-grp" id="g-brief">简讯</h3>
-<article class="entry pm-entry pm-brief">
-  <p class="name">抖音生活服务<span class="src">2026-11-18</span></p>
+<article class="entry pm-entry pm-brief" id="b-1" data-entry-id="b-1">
+  <div class="pm-entry-head">
+    <p class="name">抖音生活服务<span class="src">2026-11-18</span></p>
+    <button type="button" class="r-mark-here" data-entry-id="b-1" aria-pressed="false" aria-label="标记读到这里，简讯 1">标记读到这里</button>
+  </div>
   <p class="pm-text">新浪科技报道，因个人及家庭生活安排，浦燕子将不再担任抖音生活服务总裁，转任公司顾问，后续将参与公司公益等相关工作，该职务由红果短剧负责人莫少君接任。抖音集团官方回应称，此次调整属于正常的管理岗位轮换与交接，生活服务是公司长期发展方向之一，对该板块会持续投入、长期经营。报道还写到，浦燕子是字节早期员工，2013 年 12 月加入，2023 年 11 月起兼任抖音生活服务业务负责人；莫少君 2017 年加入，先后负责番茄小说、番茄畅听和红果短剧。</p>
   <p class="pm-links"><a href="https://finance.sina.com.cn/tob/2026-11-18/doc-inizcexp7078934.shtml">原文</a></p>
 </article>
-<article class="entry pm-entry pm-brief">
-  <p class="name">Accenture<span class="src">2026-11-19</span></p>
+<article class="entry pm-entry pm-brief" id="b-2" data-entry-id="b-2">
+  <div class="pm-entry-head">
+    <p class="name">Accenture<span class="src">2026-11-19</span></p>
+    <button type="button" class="r-mark-here" data-entry-id="b-2" aria-pressed="false" aria-label="标记读到这里，简讯 2">标记读到这里</button>
+  </div>
   <p class="pm-text">CNA 报道，Accenture 表示计划在 1 月前通过自愿离职方案，在葡萄牙裁减约 950 个岗位，对象是为 Meta Platforms 服务的员工。该公司称，已告知里斯本为 Meta 提供 Trust &amp; Safety 服务的团队这一计划，裁减规模约为其葡萄牙员工的 16%，理由是「major changes in client demand for this work and our need to make significant workforce reductions」。报道写到，此举正值 Meta 推进与人工智能相关的更广泛效率计划；Accenture 还表示，将在评估该方案参与情况后再决定还需采取哪些重组步骤，并称仍会继续在葡萄牙投入战略能力和当地客户合作。</p>
   <p class="pm-links"><a href="https://www.channelnewsasia.com/business/accenture-launches-plan-cut-950-meta-linked-jobs-in-portugal-6565761">原文</a></p>
 </article>
-<article class="entry pm-entry pm-brief">
-  <p class="name">Ubisoft<span class="src">2026-11-19</span></p>
+<article class="entry pm-entry pm-brief" id="b-3" data-entry-id="b-3">
+  <div class="pm-entry-head">
+    <p class="name">Ubisoft<span class="src">2026-11-19</span></p>
+    <button type="button" class="r-mark-here" data-entry-id="b-3" aria-pressed="false" aria-label="标记读到这里，简讯 3">标记读到这里</button>
+  </div>
   <p class="pm-text">CBC 报道，Ubisoft 已确认将在蒙特利尔和魁北克城工作室裁员 166 人。该公司公关负责人 Antoine Leduc-Labelle 向 Radio-Canada 表示，蒙特利尔 128 个岗位、魁北克城 38 个岗位被取消，影响不到其加拿大员工的 4%，涉及制作团队以及部分支持制作的岗位。公司称，制作需求在变化，需要调整部分团队规模，「to ensure our resources are aligned with current production priorities and business needs」，并为受影响员工提供遣散费和职业过渡支持。</p>
   <p class="pm-links"><a href="https://www.cbc.ca/news/business/ubisoft-layoffs-166-montreal-quebec-city-9.7428473">原文</a></p>
 </article>
-<article class="entry pm-entry pm-brief">
-  <p class="name">Yelp<span class="src">2026-11-18</span></p>
+<article class="entry pm-entry pm-brief" id="b-4" data-entry-id="b-4">
+  <div class="pm-entry-head">
+    <p class="name">Yelp<span class="src">2026-11-18</span></p>
+    <button type="button" class="r-mark-here" data-entry-id="b-4" aria-pressed="false" aria-label="标记读到这里，简讯 4">标记读到这里</button>
+  </div>
   <p class="pm-text">公司 11 月 18 日的 SEC 8-K 写明，已通知员工进行人员精简，预计影响近 5% 的全职员工；相关费用估计约 1,400 万至 1,600 万美元，大部分将在 2026 年第四季度和 2027 年第一季度发生，包括遣散及相应福利的现金支出。8-K 称，此举是为了支持长期战略目标，并打算把由此节省下来的大部分现金再投入业务，重点放在其认为能推动转型和股东回报的高回报机会，包括 other revenue line 中的 AI-powered offerings。它同时维持 2026 年全年展望：净收入 14.55 亿至 14.60 亿美元，调整后 EBITDA 3.20 亿至 3.25 亿美元。本机直接打开 SEC 原文返回 403，以上内容依据抓取工具读到的 8-K 全文，并与 TradingView 对同一份文件的转述核对。</p>
   <p class="pm-links"><a href="https://www.tradingview.com/news/tradingview:02b1c34fc67b2:0-yelp-to-cut-nearly-5-of-workforce-reaffirm-2026-outlook/">原文</a></p>
 </article>
@@ -776,5 +866,270 @@ p.disclaimer{margin:24px 0 0!important;font-size:13px!important;line-height:1.7!
 function f(){var k=-1;for(var j=0;j<ts.length;j++){if(ts[j]&&ts[j].getBoundingClientRect().top<120)k=j;}ls.forEach(function(a,j){a.classList.toggle('on',j===k);});
 if(k>=0){var a=ls[k],t=a.closest('.toc');var r=a.getBoundingClientRect(),q=t.getBoundingClientRect();if(r.top<q.top||r.bottom>q.bottom)t.scrollTop+=r.top-q.top-q.height/2;}}
 addEventListener('scroll',f,{passive:true});f();})();</script>
+<script>
+/* PM Digest manual bookmark.
+   Only click handlers write to localStorage. Scroll, load, hash, and history must never save or overwrite.
+   One bookmark per browser: { date: 'YYYY-MM-DD', id: 'e-serial'|'rN'|'b-N'|... }. No account, no cross-device, no auto-jump.
+*/
+(function (root) {
+  var KEY = 'pmDigest.bookmark';
+  var DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+  var ID_RE = /^(e-\d+|e-serial|e-queue|r\d+|b-\d+|p-\d+)$/;
+  var bound = false;
+  var storageAvailable = true;
+  var lastError = '';
+
+  function announce(msg) {
+    var el = root.document && document.querySelector('.r-bookmark-status');
+    if (el) el.textContent = msg || '';
+  }
+
+  function getStore() {
+    try {
+      return root.localStorage;
+    } catch (err) {
+      storageAvailable = false;
+      lastError = 'localStorage unavailable';
+      return null;
+    }
+  }
+
+  function normalize(raw) {
+    if (!raw || typeof raw !== 'object') return null;
+    var date = raw.date;
+    var id = raw.id;
+    if (typeof date !== 'string' || typeof id !== 'string') return null;
+    if (!DATE_RE.test(date) || !ID_RE.test(id)) return null;
+    return { date: date, id: id };
+  }
+
+  function read() {
+    lastError = '';
+    var store = getStore();
+    if (!store) return null;
+    var txt;
+    try {
+      txt = store.getItem(KEY);
+    } catch (err) {
+      storageAvailable = false;
+      lastError = 'read failed';
+      return null;
+    }
+    if (txt == null || txt === '') return null;
+    var parsed;
+    try {
+      parsed = JSON.parse(txt);
+    } catch (err) {
+      try { store.removeItem(KEY); } catch (e2) {}
+      return null;
+    }
+    var bm = normalize(parsed);
+    if (!bm) {
+      try { store.removeItem(KEY); } catch (e2) {}
+      return null;
+    }
+    return bm;
+  }
+
+  function write(bm) {
+    lastError = '';
+    var norm = normalize(bm);
+    if (!norm) {
+      lastError = 'invalid bookmark';
+      return false;
+    }
+    var store = getStore();
+    if (!store) {
+      announce('无法保存书签，浏览器可能禁用了本地存储');
+      return false;
+    }
+    try {
+      store.setItem(KEY, JSON.stringify(norm));
+      storageAvailable = true;
+      announce('已标记到 ' + norm.date + ' ' + entryLabel(norm.id));
+      return true;
+    } catch (err) {
+      storageAvailable = false;
+      lastError = 'write failed';
+      announce('无法保存书签，浏览器可能禁用了本地存储');
+      return false;
+    }
+  }
+
+  function clear() {
+    lastError = '';
+    var store = getStore();
+    if (!store) {
+      announce('无法清除书签，浏览器可能禁用了本地存储');
+      return false;
+    }
+    try {
+      store.removeItem(KEY);
+      storageAvailable = true;
+      announce('已清除标记');
+      return true;
+    } catch (err) {
+      storageAvailable = false;
+      lastError = 'clear failed';
+      announce('无法清除书签，浏览器可能禁用了本地存储');
+      return false;
+    }
+  }
+
+  function pageDate() {
+    var doc = root.document;
+    if (doc) {
+      var marked = doc.querySelector('[data-digest-date]');
+      if (marked) {
+        var d = marked.getAttribute('data-digest-date');
+        if (d && DATE_RE.test(d)) return d;
+      }
+    }
+    var path = (root.location && root.location.pathname) || '';
+    var m = path.match(/digest-(\d{4}-\d{2}-\d{2})\.html$/);
+    if (m) return m[1];
+    if (root.DIGEST_ARCHIVE && root.DIGEST_ARCHIVE.length && root.DIGEST_ARCHIVE[0].d) {
+      return root.DIGEST_ARCHIVE[0].d;
+    }
+    return '';
+  }
+
+  function entryLabel(id) {
+    if (!id) return '';
+    if (/^e-\d+$/.test(id)) return '第 ' + id.slice(2) + ' 条';
+    if (id === 'e-serial') return '连载';
+    if (id === 'e-queue') return '连载顺序';
+    if (/^r\d+$/.test(id)) return id.toUpperCase();
+    if (/^b-\d+$/.test(id)) return '简讯 ' + id.slice(2);
+    if (/^p-\d+$/.test(id)) return '第 ' + id.slice(2) + ' 节';
+    return id;
+  }
+  function entryNum(id) { return entryLabel(id); }
+
+  function attachTag(li, bm) {
+    li.classList.add('r-has-bookmark');
+    var slot = document.createElement('span');
+    slot.className = 'r-bookmark-slot';
+    var link = document.createElement('a');
+    link.className = 'r-last-read';
+    link.href = 'digest-' + bm.date + '.html#' + bm.id;
+    link.textContent = '上次读到';
+    link.setAttribute('aria-label', '上次读到 ' + bm.date + ' ' + entryLabel(bm.id));
+    var clr = document.createElement('button');
+    clr.type = 'button';
+    clr.className = 'r-clear-mark';
+    clr.textContent = '清除';
+    clr.setAttribute('aria-label', '清除阅读书签');
+    slot.appendChild(link);
+    slot.appendChild(clr);
+    li.appendChild(slot);
+  }
+
+  function paintRail(bm) {
+    var doc = root.document;
+    if (!doc) return;
+    var lis = doc.querySelectorAll('.rail .a-list li, .arch-m .a-list li');
+    for (var i = 0; i < lis.length; i++) {
+      lis[i].classList.remove('r-has-bookmark');
+      var old = lis[i].querySelector('.r-bookmark-slot');
+      if (old) old.parentNode.removeChild(old);
+    }
+    if (!bm) return;
+    var nodes = doc.querySelectorAll('.rail .a-list li[data-date="' + bm.date + '"], .arch-m .a-list li[data-date="' + bm.date + '"]');
+    for (var j = 0; j < nodes.length; j++) attachTag(nodes[j], bm);
+  }
+
+  function paintEntries(bm) {
+    var doc = root.document;
+    if (!doc) return;
+    var date = pageDate();
+    var entries = doc.querySelectorAll('article[data-entry-id]');
+    for (var i = 0; i < entries.length; i++) {
+      var art = entries[i];
+      var id = art.getAttribute('data-entry-id');
+      var on = !!(bm && bm.date === date && bm.id === id);
+      art.classList.toggle('r-bookmarked', on);
+      var btn = art.querySelector('.r-mark-here');
+      if (!btn) continue;
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      if (on) {
+        btn.textContent = '清除标记';
+        btn.setAttribute('aria-label', '清除标记，' + entryLabel(id));
+      } else {
+        btn.textContent = '标记读到这里';
+        btn.setAttribute('aria-label', '标记读到这里，' + entryLabel(id));
+      }
+    }
+  }
+
+  function paint() {
+    var bm = read();
+    paintRail(bm);
+    paintEntries(bm);
+    return bm;
+  }
+
+  function onMarkClick(btn) {
+    var id = btn.getAttribute('data-entry-id');
+    var date = pageDate();
+    if (!id || !DATE_RE.test(date) || !ID_RE.test(id)) return;
+    var bm = read();
+    if (bm && bm.date === date && bm.id === id) clear();
+    else write({ date: date, id: id });
+    paint();
+  }
+
+  function onDocumentClick(ev) {
+    var t = ev.target;
+    if (!t || !t.closest) return;
+    var mark = t.closest('.r-mark-here');
+    if (mark) {
+      ev.preventDefault();
+      onMarkClick(mark);
+      return;
+    }
+    var clr = t.closest('.r-clear-mark');
+    if (clr) {
+      ev.preventDefault();
+      clear();
+      paint();
+    }
+  }
+
+  function bind() {
+    if (bound || !root.document) return;
+    root.document.addEventListener('click', onDocumentClick);
+    bound = true;
+  }
+
+  function init() {
+    bind();
+    paint();
+    /* Do not scroll, do not change location, do not write storage on load. */
+  }
+
+  var api = {
+    KEY: KEY,
+    read: read,
+    write: write,
+    clear: clear,
+    pageDate: pageDate,
+    paint: paint,
+    init: init,
+    bind: bind,
+    normalize: normalize,
+    get lastError() { return lastError; },
+    get storageAvailable() { return storageAvailable; },
+    get bound() { return bound; }
+  };
+
+  root.ReadingBookmark = api;
+  root.PMBookmark = api;
+  /* Script is inlined at the end of the page; required nodes already exist. Init now.
+     Do not wait for DOMContentLoaded — and never write storage or jump on init. */
+  if (root.document) init();
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
 </body>
 </html>
