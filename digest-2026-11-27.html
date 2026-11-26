@@ -1,0 +1,1115 @@
+<title>PM Digest</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Libre+Franklin:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    /* cool blue-grey paper, slate ink, single signal-amber accent */
+    --bg: #E9ECF1;
+    --surface: #FBFCFE;
+    --ink: #191C23;
+    --ink-soft: #474E5B;
+    --ink-faint: #79818F;
+    --line: #D2D7E0;
+    --line-strong: #191C23;
+    --accent: #C98A00;
+    --accent-ink: #8A5A00;
+    --accent-wash: #FBF2DC;
+    --accent-wash-edge: #E9B84A;
+    --good: #2E7D57;
+    --shadow: 0 1px 2px rgba(24,28,35,.05), 0 12px 32px -18px rgba(24,28,35,.28);
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --bg: #101319;
+      --surface: #191D25;
+      --ink: #E9EBF0;
+      --ink-soft: #A9B1BE;
+      --ink-faint: #6E7684;
+      --line: #2A2F39;
+      --line-strong: #E9EBF0;
+      --accent: #F0B429;
+      --accent-ink: #F5C556;
+      --accent-wash: rgba(240,180,41,.08);
+      --accent-wash-edge: rgba(240,180,41,.55);
+      --good: #58C08C;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 18px 44px -20px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #101319;
+    --surface: #191D25;
+    --ink: #E9EBF0;
+    --ink-soft: #A9B1BE;
+    --ink-faint: #6E7684;
+    --line: #2A2F39;
+    --line-strong: #E9EBF0;
+    --accent: #F0B429;
+    --accent-ink: #F5C556;
+    --accent-wash: rgba(240,180,41,.08);
+    --accent-wash-edge: rgba(240,180,41,.55);
+    --good: #58C08C;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 18px 44px -20px rgba(0,0,0,.7);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Serif SC", "Libre Franklin", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.78;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px 88px; }
+
+  /* ---------- nameplate ---------- */
+  .plate { padding-top: 34px; }
+  .plate-top {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .signal { display: inline-flex; align-items: center; gap: 7px; }
+  .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+    animation: pulse 3.4s ease-out infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent); }
+    70%,100% { box-shadow: 0 0 0 7px transparent; }
+  }
+
+  .toggle {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-soft); background: transparent;
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 5px 12px; cursor: pointer; transition: border-color .18s, color .18s;
+  }
+  .toggle:hover { color: var(--ink); border-color: var(--line-strong); }
+  .toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .masthead {
+    border-top: 3px solid var(--line-strong);
+    border-bottom: 1px solid var(--line-strong);
+    margin-top: 12px; padding: 18px 0 16px;
+  }
+  h1.title {
+    font-family: "Newsreader", Georgia, serif; font-weight: 600;
+    font-size: clamp(2.9rem, 11vw, 4.4rem); line-height: .96;
+    letter-spacing: -.02em; margin: 0; text-wrap: balance;
+  }
+  .title em { font-style: italic; font-weight: 500; color: var(--accent-ink); }
+  .tagline {
+    font-family: "Noto Serif SC", "Newsreader", serif; font-size: 1.06rem;
+    color: var(--ink-soft); margin: 12px 0 0; letter-spacing: .01em;
+  }
+
+  .dateline {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--ink-faint); padding: 11px 0 0;
+  }
+  .dateline b { color: var(--ink-soft); font-weight: 600; }
+  .dateline .num { font-variant-numeric: tabular-nums; color: var(--accent-ink); font-weight: 600; }
+
+  /* ---------- today's signal (thesis lead) ---------- */
+  .lead {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 3px; box-shadow: var(--shadow);
+    padding: 24px 24px 22px; margin: 28px 0 8px;
+  }
+  .kicker {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--accent-ink); display: flex; align-items: center; gap: 9px; margin: 0 0 12px;
+  }
+  .kicker::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--accent-wash-edge), transparent); }
+  .lead h2 {
+    font-family: "Noto Serif SC", "Newsreader", serif; font-weight: 500;
+    font-size: 1.42rem; line-height: 1.5; letter-spacing: 0; margin: 0; text-wrap: pretty;
+  }
+  .lead h2 .mark {
+    background: linear-gradient(180deg, transparent 62%, color-mix(in srgb, var(--accent) 42%, transparent) 62%);
+    padding: 0 1px;
+  }
+
+  /* ---------- section rule ---------- */
+  .sec-head { display: flex; align-items: center; gap: 12px; margin: 46px 0 6px; }
+  .sec-head .lbl {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--ink); white-space: nowrap;
+  }
+  .sec-head .lbl .zh-lbl { font-family: "Noto Serif SC", serif; letter-spacing: .08em; margin-right: 6px; }
+  .sec-head .rule { flex: 1; height: 2px; background: var(--line-strong); }
+  .sec-head .count { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+
+  /* ---------- entry ---------- */
+  .entry { padding: 26px 0 4px; border-bottom: 1px solid var(--line); }
+  .entry:last-of-type { border-bottom: 0; }
+
+  .byline { margin-bottom: 12px; }
+  .tag {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 10.5px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-faint); margin-bottom: 4px;
+  }
+  .tag .ch { color: var(--accent-ink); }
+  .name {
+    font-family: "Newsreader", Georgia, serif; font-weight: 600;
+    font-size: 1.34rem; line-height: 1.15; letter-spacing: -.01em; margin: 0; text-wrap: balance;
+  }
+  .name span { color: var(--ink-soft); font-weight: 400; font-style: italic; font-size: .96rem; }
+
+  /* zh body is PRIMARY */
+  .zh { margin: 0; }
+  .zh + .zh { margin-top: 12px; }
+
+  /* english-original channel — key quotes only */
+  .en-quote {
+    margin: 15px 0 4px; padding: 12px 16px;
+    background: var(--accent-wash); border-left: 2px solid var(--accent-wash-edge);
+    border-radius: 0 3px 3px 0;
+    font-family: "Newsreader", Georgia, serif; font-style: italic;
+    color: var(--ink-soft); font-size: 1.02rem; line-height: 1.6;
+  }
+  .en-quote p { margin: 0; }
+  .en-quote p + p { margin-top: 8px; }
+  .en-quote .q-lbl {
+    display: block; font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-style: normal; font-size: 9.5px; font-weight: 600; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--accent-ink); margin-bottom: 6px;
+  }
+
+  .receipts { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 2px; }
+  .receipts a {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11.5px; letter-spacing: .02em; color: var(--accent-ink);
+    text-decoration: none; padding: 3px 9px;
+    border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
+    transition: border-color .16s, background .16s, transform .16s;
+  }
+  .receipts a::before { content: "↗"; opacity: .7; }
+  .receipts a:hover { border-color: var(--accent-wash-edge); background: var(--accent-wash); transform: translateY(-1px); }
+  .receipts a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* podcast-specific */
+  .takeaway { display: flex; gap: 10px; margin: 4px 0 16px; font-size: 1.02rem; }
+  .takeaway .k {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent-ink); white-space: nowrap; padding-top: 6px;
+  }
+  .takeaway .v { margin: 0; font-weight: 600; }
+
+  blockquote {
+    margin: 18px 0; padding: 4px 0 4px 20px; border-left: 3px solid var(--accent);
+    font-family: "Newsreader", Georgia, serif; font-style: italic;
+    font-size: 1.24rem; line-height: 1.42; color: var(--ink); text-wrap: pretty;
+  }
+  blockquote .src {
+    display: block; margin-top: 8px; font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-style: normal; font-size: 11px; letter-spacing: .04em; color: var(--ink-faint);
+  }
+
+  footer {
+    margin-top: 54px; padding-top: 20px; border-top: 3px solid var(--line-strong);
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: .05em; color: var(--ink-faint); line-height: 1.9;
+  }
+  footer a { color: var(--accent-ink); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  code { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .88em; background: var(--accent-wash); padding: 1px 5px; border-radius: 3px; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateY(10px); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+  }
+</style>
+<!-- FB_RAIL_CSS -->
+
+<style>
+  /* left sidebar rail (index only) */
+  .rail {
+    position: fixed;
+    top: 34px;
+    left: max(20px, calc((100vw - 720px) / 2 - 232px));
+    width: 200px;
+    max-height: calc(100vh - 68px);
+    overflow-y: auto;
+    z-index: 10;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  .rail-inner {
+    border-left: 2px solid var(--line-strong);
+    padding: 6px 0 6px 14px;
+  }
+  .rail-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 8px; margin-bottom: 10px;
+  }
+  .rail-lbl {
+    font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .rail-lbl .rail-zh {
+    font-family: "Noto Serif SC", serif; letter-spacing: .08em; margin-right: 6px;
+  }
+  .rail-count {
+    font-size: 10.5px; color: var(--ink-faint); font-variant-numeric: tabular-nums;
+    letter-spacing: .06em;
+  }
+  .rail .a-list { list-style: none; padding: 0; margin: 0; }
+  .rail .a-list li { margin: 0; }
+  .rail .a-list a {
+    display: flex; flex-direction: column; gap: 2px;
+    padding: 8px 0; text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    transition: color .16s, border-color .16s, padding-left .16s;
+  }
+  .rail .a-list a:hover {
+    color: var(--accent-ink); border-color: var(--accent-wash-edge);
+    padding-left: 4px;
+  }
+  .rail .a-list .a-date {
+    font-size: 11.5px; letter-spacing: .06em; color: var(--ink);
+    font-variant-numeric: tabular-nums; font-weight: 600;
+  }
+  .rail .a-list .a-zh {
+    font-family: "Noto Serif SC", serif; font-size: 12px; color: var(--ink-faint);
+    letter-spacing: 0;
+  }
+  .rail .a-list .a-current > a {
+    color: var(--accent-ink); border-color: var(--accent-wash-edge);
+    padding-left: 4px;
+  }
+  .rail .a-list .a-current .a-date { color: var(--accent-ink); }
+  .rail .a-list a:hover .a-date,
+  .rail .a-list a:hover .a-zh { color: var(--accent-ink); }
+
+  /* rail scrollbar: subtle */
+  .rail::-webkit-scrollbar { width: 6px; }
+  .rail::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+  .rail::-webkit-scrollbar-thumb:hover { background: var(--line-strong); }
+
+  /* narrow viewport: rail becomes a top strip that scrolls horizontally */
+  @media (max-width: 1179px) {
+    .rail {
+      position: sticky; top: 0; left: 0; width: 100%; max-height: none;
+      background: var(--bg);
+      padding: 10px 20px 8px;
+      border-bottom: 1px solid var(--line);
+      overflow-x: auto; overflow-y: hidden;
+    }
+    .rail-inner {
+      border-left: 0; padding: 0;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .rail-head {
+      margin: 0; flex-shrink: 0; flex-direction: column;
+      align-items: flex-start; gap: 1px;
+    }
+    .rail .a-list {
+      display: flex; gap: 4px; flex-wrap: nowrap;
+    }
+    .rail .a-list li { flex-shrink: 0; }
+    .rail .a-list a {
+      flex-direction: row; align-items: baseline; gap: 6px;
+      padding: 6px 10px; border-bottom: 0;
+      border: 1px solid var(--line); border-radius: 999px;
+      background: var(--surface); white-space: nowrap;
+    }
+    .rail .a-list a:hover { padding-left: 10px; }
+    .rail .a-list .a-current > a {
+      padding-left: 10px; background: var(--accent-wash);
+      border-color: var(--accent-wash-edge);
+    }
+    .rail .a-list .a-zh { font-size: 11px; }
+  }
+</style>
+
+<!-- FB_EXTRA --><style>
+  .masthead { margin-top: 8px; }
+  .dateline { font-size: 15px; letter-spacing: .02em; text-transform: none; gap: 8px 22px; }
+  .dateline b { font-size: 17px; color: var(--ink); }
+  .dateline .num { font-size: 17px; }
+  .lead .kicker { font-size: 13px; letter-spacing: .14em; }
+  .lead .lead-p { font-size: 17px; line-height: 1.75; margin: 0; color: var(--ink); text-wrap: pretty; }
+  .lead .lead-p .mark { background: linear-gradient(transparent 62%, var(--accent-wash) 62%); color: var(--accent-ink); font-weight: 600; }
+  .sec-head .lbl .zh-lbl { font-size: 1.7rem; font-weight: 700; letter-spacing: .04em; color: var(--ink); text-transform: none; margin: 0; }
+  .sec-sum { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 3px; padding: 14px 18px; margin: 14px 0 6px; font-size: 17px; }
+  .sec-sum p { margin: 0 0 6px; }
+  .sec-sum ol { margin: 4px 0 0; padding-left: 22px; }
+  .sec-sum .k { font-family: "Noto Serif SC", serif; font-size: 17px; font-weight: 700; color: var(--accent-ink); margin-right: 4px; }
+  .name .src { font-family: "IBM Plex Mono", "Noto Serif SC", monospace; font-style: normal; font-weight: 500; font-size: 12px; letter-spacing: .04em; color: var(--ink-faint); margin-left: 8px; white-space: nowrap; }
+  .time { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--ink-faint); margin: 4px 0 0; }
+  .receipts { justify-content: flex-end; }
+  .lst { list-style: none; padding: 0; margin: 6px 0 0; }
+  .lst li { padding: 9px 0; border-top: 1px dashed var(--line); }
+  .lst li:first-child { border-top: 0; }
+  .lst .t { color: var(--ink); text-decoration: none; font-weight: 500; }
+  .lst .t:hover { color: var(--accent-ink); }
+  .lst .m { display: block; font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--ink-faint); }
+  .grp { font-family: "Noto Serif SC", serif; font-size: 1.2rem; font-weight: 600; color: var(--accent-ink); letter-spacing: .04em; margin: 30px 0 0; padding-bottom: 4px; border-bottom: 1px solid var(--accent-wash-edge); }
+  .note { font-family: "IBM Plex Mono", "Noto Serif SC", monospace; font-size: 12px; color: var(--ink-faint); margin: 14px 0 0; line-height: 1.7; }
+  .sec-head, .grp, .entry { scroll-margin-top: 24px; }
+  .toc { position: fixed; top: 34px; right: max(20px, calc((100vw - 720px) / 2 - 252px)); width: 220px; max-height: calc(100vh - 68px); overflow-y: auto; z-index: 10; font-family: "Noto Serif SC", serif; }
+  .toc-inner { border-left: 2px solid var(--line-strong); padding: 6px 0 6px 14px; }
+  .toc-head { font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; letter-spacing: .2em; color: var(--ink); margin-bottom: 10px; }
+  .toc-head .rail-zh { font-family: "Noto Serif SC", serif; letter-spacing: .08em; margin-right: 6px; }
+  .toc ul { list-style: none; padding: 0; margin: 0; }
+  .toc a { text-decoration: none; color: var(--ink-faint); display: block; }
+  .toc a:hover, .toc a.on { color: var(--accent-ink); }
+  .toc .t-sec { margin: 0 0 10px; }
+  .toc .t-sec > a { font-size: 14px; font-weight: 600; color: var(--ink); padding: 4px 0; border-bottom: 1px solid var(--line); }
+  .toc .t-sec > a .n { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--ink-faint); font-weight: 400; margin-left: 6px; }
+  .toc .t-grp > a { font-size: 12.5px; font-weight: 600; color: var(--accent-ink); padding: 6px 0 2px; }
+  .toc .t-it > a { font-size: 12px; line-height: 1.45; padding: 3px 0 3px 8px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .toc::-webkit-scrollbar { width: 6px; } .toc::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+  .toc-m { display: none; }
+  @media (max-width: 1179px) {
+    .toc { display: none; }
+    .toc-m { display: block; margin: 18px 0 0; border: 1px solid var(--line); border-radius: 3px; background: var(--surface); padding: 10px 14px; font-family: "Noto Serif SC", serif; }
+    .toc-m summary { cursor: pointer; font-weight: 600; font-size: 15px; color: var(--ink); }
+    .toc-m ul { list-style: none; padding: 0; margin: 8px 0 0; }
+    .toc-m a { text-decoration: none; color: var(--ink-faint); display: block; padding: 3px 0; }
+    .toc-m .t-sec > a { color: var(--ink); font-weight: 600; } .toc-m .t-grp > a { color: var(--accent-ink); padding-left: 8px; }
+    .toc-m .t-it { display: none; }
+    .sec-head, .grp, .entry { scroll-margin-top: 72px; }
+  }
+</style><!-- /FB_EXTRA -->
+<!-- YOHAKU --><style>
+:root{--bg:#f4f1ea;--surface:#f4f1ea;--ink:#23211d;--ink-soft:#23211d;--ink-faint:#8a8478;--line:transparent;--line-strong:transparent;--accent:#23211d;--accent-ink:#23211d;--accent-wash:transparent;--accent-wash-edge:transparent;--shadow:none}
+@media (prefers-color-scheme:dark){:root{--bg:#f4f1ea;--surface:#f4f1ea;--ink:#23211d;--ink-faint:#8a8478}}
+html,body{background:#f4f1ea!important}
+body,body *{font-family:"Noto Serif SC","Noto Serif CJK SC","Songti SC",serif!important;border-color:transparent!important;box-shadow:none!important}
+body{color:#23211d!important;font-size:16px!important;line-height:1.85!important;letter-spacing:.01em;-webkit-font-smoothing:antialiased}
+.wrap{max-width:640px!important}
+/* title: one quiet line */
+.masthead{border:0!important;padding:0!important;margin:56px 0 0!important}
+h1.title{font-family:"Noto Serif SC","Noto Serif CJK SC",serif!important;font-size:30px!important;font-weight:600!important;letter-spacing:.01em!important;line-height:1.2!important}
+h1.title br{display:none}
+h1.title em{font-style:normal!important;color:#23211d!important;font-weight:600!important;margin-left:.25em;font-family:inherit!important}
+.dateline{font-size:13px!important;text-transform:none!important;letter-spacing:.02em!important;color:#8a8478!important;gap:4px 18px!important;padding-top:14px!important}
+.dateline b,.dateline .num{color:#8a8478!important;font-weight:400!important;font-size:13px!important}
+/* summary */
+.lead{background:none!important;border:0!important;padding:0!important;margin:72px 0 0!important}
+.kicker{display:none!important}
+.lead .lead-p,.lead p,.lead h2{font-size:19px!important;line-height:1.95!important;color:#23211d!important;font-weight:400!important}
+.lead .mark{background:none!important;color:#b03a2e!important;font-weight:500!important}
+.lead *{color:#23211d!important;opacity:1!important}.lead .mark{color:#b03a2e!important}
+/* sections */
+.sec-head{margin:120px 0 0!important;display:block!important}
+.sec-head .rule,.sec-head .count{display:none!important}
+.sec-head .lbl .zh-lbl,.sec-head .lbl{font-family:"Noto Serif SC","Noto Serif CJK SC",serif!important;font-size:34px!important;font-weight:600!important;letter-spacing:.12em!important;color:#23211d!important}
+.sec-sum{background:none!important;border:0!important;padding:0!important;margin:24px 0 64px!important;font-size:17px!important;color:#23211d!important}
+.sec-sum .k{display:none!important}
+.sec-sum ol{padding-left:1.2em!important}
+/* entries */
+.entry{padding:0 0 56px!important;border:0!important}
+.name{font-size:17px!important;font-weight:600!important;line-height:1.6!important}
+.name .src{font-size:13px!important;font-weight:400!important;color:#8a8478!important;margin-left:10px!important;letter-spacing:0!important}
+.time{font-size:12px!important;color:#a8a194!important;margin:2px 0 12px!important;font-variant-numeric:tabular-nums}
+.entry p{color:#33302a!important}
+.receipts{gap:14px!important;margin-top:8px!important}
+.receipts a{background:none!important;border:0!important;padding:0!important;color:#23211d!important;font-size:12px!important;text-decoration:none!important}
+.receipts a::before{content:""!important}
+/* rails: lighter, Chinese only */
+.rail-lbl,.toc-head{font-size:0!important}
+.rail-lbl .rail-zh,.toc-head .rail-zh{font-size:12px!important;color:#23211d!important;letter-spacing:.1em!important;font-weight:500!important}
+.rail-count{display:none!important}
+.rail,.toc{font-size:12px!important}
+.a-zh{display:none!important}
+.a-date{color:#8a8478!important;font-size:12px!important;font-weight:400!important;letter-spacing:.02em!important}
+.a-current .a-date{color:#23211d!important}
+.toc-inner{border:0!important;padding:0!important}
+.toc .t-sec>a{font-size:13px!important;font-weight:500!important;border:0!important;color:#23211d!important}
+.toc .t-sec>a .n{display:none!important}
+.toc .t-it>a{color:#8a8478!important;padding-left:0!important}
+.toc a.on{color:#23211d!important}
+a.kw,.zh a.kw{color:inherit!important;text-decoration:none!important;border:0!important;background-image:linear-gradient(rgba(35,33,29,.35),rgba(35,33,29,.35))!important;background-size:100% 1px!important;background-repeat:no-repeat!important;background-position:0 95%!important}a.kw:hover{color:#23211d!important}
+.receipts a:not(:first-child){display:none!important}
+.receipts a:first-child{font-size:0!important}.receipts a:first-child::after{content:"原文";font-size:12px}
+.lead .mark,a.kw:hover{font-weight:600!important}.a-current .a-date{font-weight:600!important}
+.name{font-size:20px!important;font-weight:700!important;color:#1a1814!important;letter-spacing:.02em!important;line-height:1.5!important}
+.name .src{font-size:13px!important;font-weight:400!important}
+.entry p:not(.name):not(.time){font-size:15.5px!important;color:#4a463e!important;font-weight:400!important;line-height:2!important}
+.time{margin:4px 0 16px!important}
+.sec-sum,.sec-sum *{color:#33302a!important}
+.sec-head .lbl .zh-lbl,.sec-head .lbl{font-size:38px!important;font-weight:700!important;color:#1a1814!important}
+h1.title{font-weight:700!important;color:#1a1814!important}
+.mark,.lead .mark{color:#b03a2e!important;background:none!important}
+</style><!-- /YOHAKU -->
+<!-- PM_CSS --><style>
+/* ===== PM Digest 专用样式（Ada）— 设计稿，未接入任何流水线 =====
+   放置：yohaku.css（YOHAKU 块）之后，与 reading.css 同位置。通用版式（YOHAKU / FB_EXTRA / .site-switch）不在这里改。
+   规则：和纸·墨 —— 底 #f4f1ea、全衬线、只用墨色；标题 20px 粗深墨 #1a1814，正文 15.5px 浅墨 #4a463e、行高 2；
+        朱红 #b03a2e 只给「期号数字」和讲解里的「我的解读」标记；无线、框、阴影，靠留白分隔。
+   选择器统一用 .wrap .entry.pm-entry 前缀，才压得过 YOHAKU 里 .entry p:not(.name):not(.time) 的 !important。
+   class：见 STRUCTURE.md。 */
+
+/* —— 免责声明（与其他 Digest 完全一致）—— */
+p.disclaimer{margin:24px 0 0!important;font-size:13px!important;line-height:1.7!important;letter-spacing:.04em!important;font-weight:400!important;color:#6f695e!important;background:none!important;border:0!important;padding:0!important}
+
+/* —— 切换栏（四项；与 reading 页内联的那段相同，重复无害）—— */
+.site-switch{display:flex;gap:28px;justify-content:flex-end;margin:0 0 28px}
+.site-switch a{font:500 13px/1 -apple-system,Helvetica,Arial,sans-serif!important;letter-spacing:.06em!important;text-decoration:none!important;padding:6px 0!important;color:#9a9a9a!important;border-bottom:1.5px solid transparent!important}
+.site-switch a.on{color:#111!important;border-bottom-color:#111!important}
+.site-switch a:hover{color:#111!important}
+
+/* —— 小节标题下的一句话（「近期」的日期范围、「经典」的栏目说明）：不小于正文 —— */
+.sec-sum p.pm-sum{margin:0!important;font-size:17px!important;line-height:1.9!important;color:#4a463e!important;letter-spacing:.04em}
+
+/* —— 条目通用 —— */
+.wrap .entry.pm-entry{padding:0 0 88px!important;scroll-margin-top:24px}
+.wrap .entry.pm-entry.pm-brief{padding-bottom:64px!important}
+.wrap article.entry.pm-entry:last-of-type{padding-bottom:40px!important}
+.wrap .entry.pm-entry p.name{margin:0!important}
+.wrap .entry.pm-entry p.name .src{display:inline-block}
+/* 来源行：小号灰 */
+.wrap .entry.pm-entry p.pm-src{font-size:13px!important;line-height:1.8!important;color:#6f695e!important;letter-spacing:.03em!important;margin:6px 0 0!important}
+/* 依据 / 备注：小号灰，前面灰色标签 */
+.wrap .entry.pm-entry p.pm-note{font-size:13px!important;line-height:1.8!important;color:#6f695e!important;letter-spacing:.03em!important;margin:4px 0 0!important}
+.wrap .entry.pm-entry p.pm-note .pm-k{color:#8a8478;margin-right:.8em}
+
+/* —— 小标题（原文 / 背景 / 核心观点 / 对 PM 的启发 / 下期预告）：14px 深墨、字距宽，比标题轻、比灰字重 —— */
+.wrap .entry.pm-entry p.pm-label,.wrap p.pm-label{font-size:14px!important;line-height:1.6!important;color:#23211d!important;letter-spacing:.2em!important;font-weight:600!important;margin:44px 0 10px!important}
+
+/* —— 连载标签：小灰字，期号数字朱红 —— */
+.wrap .entry.pm-entry p.pm-serial-no{font-size:13px!important;line-height:1!important;color:#8a8478!important;letter-spacing:.14em!important;font-weight:400!important;margin:0 0 14px!important;font-variant-numeric:tabular-nums}
+.wrap .entry.pm-entry p.pm-serial-no .pm-n{color:#b03a2e;font-weight:600;font-size:15px;letter-spacing:.04em;margin:0 .35em}
+.wrap .entry.pm-entry p.pm-serial-no .pm-of{margin-left:.9em;color:#a8a194}
+
+/* —— 本期范围 / 来源说明（连载信息块）—— */
+.pm-meta{margin:26px 0 0}
+.wrap .entry.pm-entry .pm-meta p{margin:0 0 18px!important}
+.wrap .entry.pm-entry .pm-meta p.pm-scope{font-size:15.5px!important;line-height:2!important;color:#4a463e!important}
+.wrap .entry.pm-entry .pm-meta p.pm-scope .pm-k{display:block;font-size:13px;line-height:1.6;color:#8a8478;letter-spacing:.14em;margin-bottom:2px}
+.wrap .entry.pm-entry .pm-meta p.pm-note{font-size:13px!important;line-height:1.85!important;color:#6f695e!important;margin:0 0 14px!important}
+.wrap .entry.pm-entry .pm-meta p.pm-note .pm-k{display:block;margin:0 0 1px;color:#8a8478;letter-spacing:.1em}
+.pm-meta a,.pm-note a{color:#6f695e!important;text-decoration:none!important;background-image:linear-gradient(rgba(35,33,29,.35),rgba(35,33,29,.35));background-size:100% 1px;background-repeat:no-repeat;background-position:0 95%;word-break:break-all}
+
+/* —— 原文：大于正文的深墨衬线，左缩进；条与条之间只靠留白 —— */
+.wrap .entry.pm-entry .pm-quote-block{margin:0 0 0 28px!important;padding:0!important}
+.wrap .entry.pm-entry .pm-quote-block p.pm-quote{font-size:18px!important;line-height:2.05!important;font-weight:500!important;font-style:normal!important;color:#1a1814!important;letter-spacing:.02em!important;margin:0 0 1em!important}
+.wrap .entry.pm-entry .pm-quote-block p.pm-skip{font-size:13px!important;line-height:1.8!important;color:#8a8478!important;letter-spacing:.04em!important;margin:1.4em 0 1.8em!important;font-weight:400!important}
+
+/* —— 编号列表（核心观点）/ 无编号列表（背景、对 PM 的启发）—— */
+.pm-pts,.pm-tips{list-style:none;margin:0;padding:0}
+.pm-pts{counter-reset:pt}
+.pm-pts>li,.pm-tips>li{position:relative;margin:0 0 .9em;padding-left:30px}
+.pm-pts>li::before{counter-increment:pt;content:counter(pt);position:absolute;left:0;top:.2em;font-size:13px;line-height:1.9;color:#8a8478;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.pm-tips>li{padding-left:0}
+.wrap .entry.pm-entry .pm-pts p,.wrap .entry.pm-entry .pm-tips p{margin:0!important}
+.pm-lead{display:block;font-weight:600;color:#1a1814;letter-spacing:.02em}
+.pm-lead .mark{font-weight:600}
+.pm-pts a,.pm-tips a,.pm-text a{color:#6f695e!important;text-decoration:none!important;background-image:linear-gradient(rgba(35,33,29,.35),rgba(35,33,29,.35));background-size:100% 1px;background-repeat:no-repeat;background-position:0 95%;word-break:break-all}
+.wrap .entry.pm-entry code{font-size:.92em;background:none;padding:0;color:#6f695e}
+.wrap .entry.pm-entry p.pm-text{margin:0 0 .6em!important}
+
+/* —— 链接：小号灰放右下，无下划线，后缀箭头 —— */
+.wrap .entry.pm-entry p.pm-links{display:flex;flex-direction:column;align-items:flex-end;gap:4px;margin:18px 0 0!important;font-size:12px!important;line-height:1.7!important}
+.wrap .entry.pm-entry p.pm-links a{color:#6f695e!important;text-decoration:none!important;font-size:12px!important;letter-spacing:.02em;background:none!important;word-break:break-all}
+.wrap .entry.pm-entry p.pm-links a:hover{color:#23211d!important}
+.wrap .entry.pm-entry p.pm-links a::after{content:" →"}
+
+/* —— 朱红：只给「我的解读」等推断标记 —— */
+.wrap .entry.pm-entry .mark{color:#b03a2e!important;background:none!important;font-weight:600!important}
+
+/* —— 小节内分组标题（精读 / 简讯）：比小节标题小、比条目标题大 —— */
+.wrap h3.pm-grp{font-size:26px!important;font-weight:700!important;color:#1a1814!important;letter-spacing:.1em!important;line-height:1.4!important;margin:88px 0 40px!important;scroll-margin-top:24px}
+.wrap h3.pm-grp:first-child{margin-top:48px!important}
+
+/* —— 连载顺序 —— */
+.pm-queue{margin:0}
+.wrap .pm-queue p.pm-note{font-size:13px!important;line-height:1.8!important;color:#6f695e!important;margin:0 0 18px!important}
+.wrap .pm-queue p.pm-text{font-size:15.5px!important;line-height:2!important;color:#4a463e!important;margin:0 0 .5em!important}
+.wrap .pm-queue p.pm-q{font-size:15.5px!important;line-height:2!important;color:#4a463e!important;margin:0 0 .5em!important;padding-left:1.6em;text-indent:-1.6em}
+.wrap .pm-queue p.pm-label{margin-top:0!important}
+
+/* —— 目录：手机折叠里列出全部条目；条数小字隐藏 —— */
+.toc-m .t-sec>a .n{display:none!important}
+.toc-m .t-it{display:block!important}
+.toc-m .t-it>a{padding-left:8px!important}
+
+/* 正文第一个小节标题：去掉多余留白（桌面无「本期目录」折叠） */
+.toc-m+.sec-head{margin-top:72px!important}
+@media (max-width:640px){
+  .site-switch{gap:0;justify-content:space-between}
+  .site-switch a{font-size:12px!important;letter-spacing:.03em!important;white-space:nowrap}
+  .toc-m+.sec-head{margin-top:56px!important}
+  .wrap .entry.pm-entry{padding-bottom:72px!important}
+  .wrap .entry.pm-entry.pm-brief{padding-bottom:52px!important}
+  .wrap .entry.pm-entry .pm-quote-block{margin-left:14px!important}
+  .wrap .entry.pm-entry .pm-quote-block p.pm-quote{font-size:17px!important;line-height:2!important}
+  .wrap .entry.pm-entry p.name .src{display:block;margin:3px 0 0!important}
+  .pm-pts>li{padding-left:24px}
+  .wrap h3.pm-grp{font-size:24px!important;margin-top:72px!important}
+}
+
+/* —— 长标题换行：YOHAKU 把 .sec-head .lbl 做成 38px 小节标题，但未覆盖原样式的 white-space:nowrap，桌面宽下会冲进右侧目录 —— */
+.wrap{min-width:0;overflow-wrap:anywhere}
+.wrap .sec-head,.wrap .entry.pm-entry p.name,.wrap h3.pm-grp{min-width:0;max-width:100%;overflow-wrap:anywhere}
+.wrap .sec-head .lbl,.wrap .sec-head .zh-lbl{white-space:normal!important;overflow-wrap:anywhere;max-width:100%;display:inline-block;min-width:0}
+
+/* ===== 手动书签：低干扰，不改变米白衬线版式 ===== */
+.wrap .entry.pm-entry .pm-entry-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px 16px;margin:0 0 14px;flex-wrap:wrap}
+.wrap .entry.pm-entry .pm-entry-head p.pm-serial-no,
+.wrap .entry.pm-entry .pm-entry-head p.name{margin:0!important;flex:1 1 auto;min-width:0}
+.wrap .entry.pm-entry button.r-mark-here,
+.rail button.r-clear-mark,
+.arch-m button.r-clear-mark{
+  appearance:none;-webkit-appearance:none;
+  background:none!important;border:0!important;box-shadow:none!important;
+  padding:6px 0;margin:0;cursor:pointer;
+  font:400 12px/1.6 inherit!important;
+  color:#8a8478!important;letter-spacing:.06em!important;
+  text-decoration:none!important;white-space:nowrap;flex:0 0 auto
+}
+.wrap .entry.pm-entry button.r-mark-here:hover,
+.rail button.r-clear-mark:hover,
+.arch-m button.r-clear-mark:hover{color:#23211d!important}
+.wrap .entry.pm-entry button.r-mark-here:focus-visible,
+.rail a.r-last-read:focus-visible,
+.arch-m a.r-last-read:focus-visible,
+.rail button.r-clear-mark:focus-visible,
+.arch-m button.r-clear-mark:focus-visible{
+  outline:1px solid #23211d;outline-offset:3px
+}
+.wrap .entry.pm-entry.r-bookmarked{scroll-margin-top:24px}
+
+.rail .a-list li,
+.arch-m .a-list li{display:flex;align-items:center;gap:8px}
+.rail .a-list li > a:first-of-type,
+.arch-m .a-list li > a:first-of-type{flex:1 1 auto;min-width:0}
+.r-bookmark-slot{display:inline-flex;align-items:baseline;gap:6px;flex:0 0 auto;margin-left:2px}
+.rail a.r-last-read,
+.arch-m a.r-last-read{
+  display:inline!important;flex-direction:unset!important;
+  padding:0!important;border:0!important;background:none!important;
+  color:#6f695e!important;font-size:11px!important;font-weight:400!important;
+  letter-spacing:.04em!important;text-decoration:none!important;
+  white-space:nowrap;line-height:1.4
+}
+.rail a.r-last-read:hover,
+.arch-m a.r-last-read:hover{color:#23211d!important;padding-left:0!important}
+.rail button.r-clear-mark,
+.arch-m button.r-clear-mark{padding:0;letter-spacing:.04em!important;font-size:11px!important}
+
+.r-bookmark-status{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0
+}
+
+@media (max-width:1179px){
+  .wrap .entry.pm-entry{scroll-margin-top:24px}
+  .arch-m .a-list li.r-has-bookmark{flex-wrap:wrap}
+}
+@media (max-width:640px){
+  .wrap .entry.pm-entry .pm-entry-head{margin-bottom:12px}
+  .wrap .entry.pm-entry button.r-mark-here{padding:8px 0}
+}
+</style><!-- /PM_CSS --><style>/* PM_EXTRA */
+.arch-m{display:none}
+@media (max-width:1179px){
+  .rail{display:none!important}
+  .arch-m{display:block;margin:0 0 18px}
+  .arch-m summary{cursor:pointer;font-size:13px;letter-spacing:.14em;color:#23211d;list-style:none;padding:6px 0}
+  .arch-m summary::-webkit-details-marker{display:none}
+  .arch-m summary::before{content:"▸ ";color:#8a8478}.arch-m[open] summary::before{content:"▾ "}
+  .arch-m .a-list{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 18px}
+  .arch-m .a-list a{display:block;text-decoration:none;font-size:13px;color:#6f695e;padding:2px 0}
+  .arch-m .a-list .a-zh{display:none}
+  .arch-m .a-list .a-current a{color:#1a1814;border-bottom:1px solid #1a1814}
+}</style>
+<!-- /FB_RAIL_CSS -->
+
+
+
+
+<aside class="rail" aria-label="往期归档" data-digest-date="2026-11-27">
+  <div class="rail-inner">
+    <div class="rail-head">
+      <span class="rail-lbl"><span class="rail-zh">往期</span>Archive</span>
+      <span class="rail-count">24 期</span>
+    </div>
+    <ul class="a-list">
+      <li class="a-current" data-date="2026-11-27"><a href="digest-2026-11-27.html"><span class="a-date">2026-11-27</span><span class="a-zh">周五 · 2026年11月27日</span></a></li>
+      <li data-date="2026-11-26"><a href="digest-2026-11-26.html"><span class="a-date">2026-11-26</span><span class="a-zh">周四 · 2026年11月26日</span></a></li>
+      <li data-date="2026-11-25"><a href="digest-2026-11-25.html"><span class="a-date">2026-11-25</span><span class="a-zh">周三 · 2026年11月25日</span></a></li>
+      <li data-date="2026-11-24"><a href="digest-2026-11-24.html"><span class="a-date">2026-11-24</span><span class="a-zh">周二 · 2026年11月24日</span></a></li>
+      <li data-date="2026-11-23"><a href="digest-2026-11-23.html"><span class="a-date">2026-11-23</span><span class="a-zh">周一 · 2026年11月23日</span></a></li>
+      <li data-date="2026-11-22"><a href="digest-2026-11-22.html"><span class="a-date">2026-11-22</span><span class="a-zh">周日 · 2026年11月22日</span></a></li>
+      <li data-date="2026-11-21"><a href="digest-2026-11-21.html"><span class="a-date">2026-11-21</span><span class="a-zh">周六 · 2026年11月21日</span></a></li>
+      <li data-date="2026-11-20"><a href="digest-2026-11-20.html"><span class="a-date">2026-11-20</span><span class="a-zh">周五 · 2026年11月20日</span></a></li>
+      <li data-date="2026-11-19"><a href="digest-2026-11-19.html"><span class="a-date">2026-11-19</span><span class="a-zh">周四 · 2026年11月19日</span></a></li>
+      <li data-date="2026-11-18"><a href="digest-2026-11-18.html"><span class="a-date">2026-11-18</span><span class="a-zh">周三 · 2026年11月18日</span></a></li>
+      <li data-date="2026-11-17"><a href="digest-2026-11-17.html"><span class="a-date">2026-11-17</span><span class="a-zh">周二 · 2026年11月17日</span></a></li>
+      <li data-date="2026-11-16"><a href="digest-2026-11-16.html"><span class="a-date">2026-11-16</span><span class="a-zh">周一 · 2026年11月16日</span></a></li>
+      <li data-date="2026-11-15"><a href="digest-2026-11-15.html"><span class="a-date">2026-11-15</span><span class="a-zh">周日 · 2026年11月15日</span></a></li>
+      <li data-date="2026-11-14"><a href="digest-2026-11-14.html"><span class="a-date">2026-11-14</span><span class="a-zh">周六 · 2026年11月14日</span></a></li>
+      <li data-date="2026-11-13"><a href="digest-2026-11-13.html"><span class="a-date">2026-11-13</span><span class="a-zh">周五 · 2026年11月13日</span></a></li>
+      <li data-date="2026-11-12"><a href="digest-2026-11-12.html"><span class="a-date">2026-11-12</span><span class="a-zh">周四 · 2026年11月12日</span></a></li>
+      <li data-date="2026-11-11"><a href="digest-2026-11-11.html"><span class="a-date">2026-11-11</span><span class="a-zh">周三 · 2026年11月11日</span></a></li>
+      <li data-date="2026-11-10"><a href="digest-2026-11-10.html"><span class="a-date">2026-11-10</span><span class="a-zh">周二 · 2026年11月10日</span></a></li>
+      <li data-date="2026-11-09"><a href="digest-2026-11-09.html"><span class="a-date">2026-11-09</span><span class="a-zh">周一 · 2026年11月9日</span></a></li>
+      <li data-date="2026-11-08"><a href="digest-2026-11-08.html"><span class="a-date">2026-11-08</span><span class="a-zh">周日 · 2026年11月8日</span></a></li>
+      <li data-date="2026-11-07"><a href="digest-2026-11-07.html"><span class="a-date">2026-11-07</span><span class="a-zh">周六 · 2026年11月7日</span></a></li>
+      <li data-date="2026-11-06"><a href="digest-2026-11-06.html"><span class="a-date">2026-11-06</span><span class="a-zh">周五 · 2026年11月6日</span></a></li>
+      <li data-date="2026-11-05"><a href="digest-2026-11-05.html"><span class="a-date">2026-11-05</span><span class="a-zh">周四 · 2026年11月5日</span></a></li>
+      <li data-date="2026-11-04"><a href="digest-2026-11-04.html"><span class="a-date">2026-11-04</span><span class="a-zh">周三 · 2026年11月4日</span></a></li>
+    </ul>
+    <p class="r-bookmark-status" role="status" aria-live="polite"></p>
+  </div>
+</aside>
+<script src="archive.js"></script>
+<nav class="toc" aria-label="本期目录"><div class="toc-inner"><div class="toc-head"><span class="rail-zh">本期目录</span>Contents</div><ul><li class="t-sec"><a href="#s-1">经典<span class="n">6</span></a><ul><li class="t-it"><a href="#e-serial">张小龙《2019 微信公开课 Pro 版演讲》</a></li><li class="t-it"><a href="#p-1">原文</a></li><li class="t-it"><a href="#p-2">背景</a></li><li class="t-it"><a href="#p-3">核心观点</a></li><li class="t-it"><a href="#p-4">对 PM 的启发</a></li><li class="t-it"><a href="#p-5">下期预告</a></li></ul></li><li class="t-sec"><a href="#s-2">近期<span class="n">3</span></a><ul><li class="t-it"><a href="#r1">研发团队最后只剩两个产品经理</a></li><li class="t-it"><a href="#r2">把“供给”当需求做：个人AI助理的五个产品决策</a></li><li class="t-it"><a href="#g-brief">简讯</a></li></ul></li></ul></div></nav>
+<div class="wrap">
+  <p class="disclaimer" role="note">以下内容均为 Grok AI 生成，不代表个人政治立场。</p>
+  <header class="plate">
+    <nav class="site-switch"><a href="../ai-builders-digest/">AI Digest</a><a href="../social-digest/">Social Digest</a><a href="../reading-digest/">Reading Digest</a><a href="../pm-digest/" class="on">PM Digest</a><a href="../fde-digest/">FDE Digest</a></nav>
+    <div class="masthead">
+      <h1 class="title">PM<br><em>Digest</em></h1>
+    </div>
+    <div class="dateline">
+      <span><b>周五 · 2026年11月27日</b></span>
+      <span><span class="num">2</span> 条精读</span>
+      <span><span class="num">2</span> 条简讯</span>
+    </div>
+  </header>
+<details class="arch-m"><summary>往期归档</summary><ul class="a-list">
+      <li class="a-current" data-date="2026-11-27"><a href="digest-2026-11-27.html"><span class="a-date">2026-11-27</span><span class="a-zh">周五 · 2026年11月27日</span></a></li>
+      <li data-date="2026-11-26"><a href="digest-2026-11-26.html"><span class="a-date">2026-11-26</span><span class="a-zh">周四 · 2026年11月26日</span></a></li>
+      <li data-date="2026-11-25"><a href="digest-2026-11-25.html"><span class="a-date">2026-11-25</span><span class="a-zh">周三 · 2026年11月25日</span></a></li>
+      <li data-date="2026-11-24"><a href="digest-2026-11-24.html"><span class="a-date">2026-11-24</span><span class="a-zh">周二 · 2026年11月24日</span></a></li>
+      <li data-date="2026-11-23"><a href="digest-2026-11-23.html"><span class="a-date">2026-11-23</span><span class="a-zh">周一 · 2026年11月23日</span></a></li>
+      <li data-date="2026-11-22"><a href="digest-2026-11-22.html"><span class="a-date">2026-11-22</span><span class="a-zh">周日 · 2026年11月22日</span></a></li>
+      <li data-date="2026-11-21"><a href="digest-2026-11-21.html"><span class="a-date">2026-11-21</span><span class="a-zh">周六 · 2026年11月21日</span></a></li>
+      <li data-date="2026-11-20"><a href="digest-2026-11-20.html"><span class="a-date">2026-11-20</span><span class="a-zh">周五 · 2026年11月20日</span></a></li>
+      <li data-date="2026-11-19"><a href="digest-2026-11-19.html"><span class="a-date">2026-11-19</span><span class="a-zh">周四 · 2026年11月19日</span></a></li>
+      <li data-date="2026-11-18"><a href="digest-2026-11-18.html"><span class="a-date">2026-11-18</span><span class="a-zh">周三 · 2026年11月18日</span></a></li>
+      <li data-date="2026-11-17"><a href="digest-2026-11-17.html"><span class="a-date">2026-11-17</span><span class="a-zh">周二 · 2026年11月17日</span></a></li>
+      <li data-date="2026-11-16"><a href="digest-2026-11-16.html"><span class="a-date">2026-11-16</span><span class="a-zh">周一 · 2026年11月16日</span></a></li>
+      <li data-date="2026-11-15"><a href="digest-2026-11-15.html"><span class="a-date">2026-11-15</span><span class="a-zh">周日 · 2026年11月15日</span></a></li>
+      <li data-date="2026-11-14"><a href="digest-2026-11-14.html"><span class="a-date">2026-11-14</span><span class="a-zh">周六 · 2026年11月14日</span></a></li>
+      <li data-date="2026-11-13"><a href="digest-2026-11-13.html"><span class="a-date">2026-11-13</span><span class="a-zh">周五 · 2026年11月13日</span></a></li>
+      <li data-date="2026-11-12"><a href="digest-2026-11-12.html"><span class="a-date">2026-11-12</span><span class="a-zh">周四 · 2026年11月12日</span></a></li>
+      <li data-date="2026-11-11"><a href="digest-2026-11-11.html"><span class="a-date">2026-11-11</span><span class="a-zh">周三 · 2026年11月11日</span></a></li>
+      <li data-date="2026-11-10"><a href="digest-2026-11-10.html"><span class="a-date">2026-11-10</span><span class="a-zh">周二 · 2026年11月10日</span></a></li>
+      <li data-date="2026-11-09"><a href="digest-2026-11-09.html"><span class="a-date">2026-11-09</span><span class="a-zh">周一 · 2026年11月9日</span></a></li>
+      <li data-date="2026-11-08"><a href="digest-2026-11-08.html"><span class="a-date">2026-11-08</span><span class="a-zh">周日 · 2026年11月8日</span></a></li>
+      <li data-date="2026-11-07"><a href="digest-2026-11-07.html"><span class="a-date">2026-11-07</span><span class="a-zh">周六 · 2026年11月7日</span></a></li>
+      <li data-date="2026-11-06"><a href="digest-2026-11-06.html"><span class="a-date">2026-11-06</span><span class="a-zh">周五 · 2026年11月6日</span></a></li>
+      <li data-date="2026-11-05"><a href="digest-2026-11-05.html"><span class="a-date">2026-11-05</span><span class="a-zh">周四 · 2026年11月5日</span></a></li>
+      <li data-date="2026-11-04"><a href="digest-2026-11-04.html"><span class="a-date">2026-11-04</span><span class="a-zh">周三 · 2026年11月4日</span></a></li>
+</ul></details>
+<details class="toc-m"><summary>本期目录</summary><ul><li class="t-sec"><a href="#s-1">经典<span class="n">6</span></a><ul><li class="t-it"><a href="#e-serial">张小龙《2019 微信公开课 Pro 版演讲》</a></li><li class="t-it"><a href="#p-1">原文</a></li><li class="t-it"><a href="#p-2">背景</a></li><li class="t-it"><a href="#p-3">核心观点</a></li><li class="t-it"><a href="#p-4">对 PM 的启发</a></li><li class="t-it"><a href="#p-5">下期预告</a></li></ul></li><li class="t-sec"><a href="#s-2">近期<span class="n">3</span></a><ul><li class="t-it"><a href="#r1">研发团队最后只剩两个产品经理</a></li><li class="t-it"><a href="#r2">把“供给”当需求做：个人AI助理的五个产品决策</a></li><li class="t-it"><a href="#g-brief">简讯</a></li></ul></li></ul></details>
+<div class="sec-head" id="s-1">
+  <span class="lbl"><span class="zh-lbl">经典</span></span>
+</div>
+<div class="sec-sum"><p class="pm-sum">逐段精读连载</p></div>
+
+<article class="entry pm-entry pm-serial" id="e-serial" data-entry-id="e-serial">
+  <div class="pm-entry-head">
+    <p class="pm-serial-no">连载 · 第<span class="pm-n">24</span>期<span class="pm-of">共约 26 期</span></p>
+    <button type="button" class="r-mark-here" data-entry-id="e-serial" aria-pressed="false" aria-label="标记读到这里，连载">标记读到这里</button>
+  </div>
+  <h3 class="name">张小龙《2019 微信公开课 Pro 版演讲》</h3>
+  <div class="pm-meta">
+    <p class="pm-scope"><span class="pm-k">本期范围</span>从「有一点对企业微信特别重要」讲到「服务和人都会更加的认可一些」。主题：企业微信：不只是公司内部沟通；「人就是服务」；订机票、快递员、微商、4S 店例子。</p>
+    <p class="pm-note"><span class="pm-k">文字稿来源</span>澎湃新闻整理的演讲全文，记者杨鑫倢、实习生柳童，2019-01-10 07:31 发布（演讲时间 2019-01-09 晚）。<a href="https://www.thepaper.cn/newsDetail_forward_2834574">https://www.thepaper.cn/newsDetail_forward_2834574</a> （媒体整理稿，个别疑似笔误原样引用）</p>
+    <p class="pm-note"><span class="pm-k">跳过</span>本期范围内跳过小标题「企业微信」、开场句「花一点时间来说一下企业微信。」，以及收束句「关于企业微信就讲到这里。」。均为小标题或没有实质内容的转场，不补讲。</p>
+  </div>
+  <section class="pm-part" id="p-1">
+    <p class="pm-label">原文</p>
+    <div class="pm-quote-block">
+      <p class="pm-quote">有一点对企业微信特别重要，值得在座各位了解一下，虽然现在还没有做出来。企业微信如果定位只是一个公司内部的沟通的工具，我认为它的场景和意义会小很多。只有当他延伸到企业外部的时候，他会产生更大的价值。我很开心看到企业微信的团队在这一块一直做很多的事情，包括怎么跟微信打通，现在微信里面可以加到企业微信的好友。我们在服务方面以用户为第一，所以暂时大家看到在的企业微信里纳一个包含微信用户的群有一定的限制，这样的限制也是好的，我们并不想让互通，使得这里面带来很多负面的效果。</p>
+      <p class="pm-quote">这里想要说明的是，企业微信正在尝试的一个方向，这个方向把它简称为“人就是服务”这样一个模式。举一个例子，现在想要定一个机票可能去某某APP，完成订机票的过程是很简单的，但是当你要改变时间或者要延期或者退订的时候很复杂，有可能要去通过电话客服才能完成这样一个任务。</p>
+      <p class="pm-quote">另外一个例子，微信里面加了很多的快递员，每次送一次快递都要加一次快递员，加了很多，下次还是不知道该联系谁，因为这些快递员很可能离职了，他们并没有身份认证背书在后面。</p>
+      <p class="pm-quote">另外一个现象是微商，微商很多人在做，朋友圈有多少是微商的信息就知道了。微商之所以能够存在是因为基于现实里类似线下社交关系获得人的背书这样一个前提的。人在交易里面起的作用特别大，像你在朋友圈里看到一个微商就去买了这个商品，如果在APP里看到商店有这个东西并不会去买，因为并没有人在这里面背书。</p>
+      <p class="pm-quote">这里联想到一点，企业希望企业微信能够把企业微信的人作为他们的一个很重要的资源，可以作为服务提供出去，那我们就在想一点，像汽车如果出问题了要去4S店，这个时候有几个选择，第一找这一个店员的微信，第二个找4S店的小程序，第三个去找它的APP，第四个找它的网页，大多数人会直接找这个店员，如果加过这个店员。因为跟人的交互，都要比其他所有更方便。这里提醒我们，既然加了这个店员，这个店员是企业微信用户，这个店员是这个企业认证的，这个店员背后应该包含这个企业服务在后面。我们为什么不这样做呢？这个人包含企业服务在后面也很容易，在公众号，点进公众号对话窗口，底下有一个菜单，你在菜单可以点这个公众号的服务，我们可以想象在微信里面，如果点开一个企业微信的联系人的对话，在对话底部也有企业的服务菜单在下面，我们把企业的服务连接到这个人身上，带给微信用户身上，就是这样一个感觉。这样一个情况底下，这个人就代表了这个企业的服务。这是企业微信将来要做的一个方向。就是让每个员工可以直接提供服务，并且因为人的背书使得客户对于店背后的服务和人都会更加的认可一些。</p>
+    </div>
+  </section>
+  <section class="pm-part" id="p-2">
+    <p class="pm-label">背景</p>
+    <ul class="pm-tips">
+      <li><p><span class="pm-lead">接着上一期讲</span>第 23 期收在红包、亲属卡和卡包，最后落到「对于线下消费连接的通道」。本期转到企业微信。上一期里，他已经顺带提过企业微信即将上线企业红包封皮；正式展开是从这一段开始的。</p></li>
+      <li><p><span class="pm-lead">他一开始就声明：这件事「现在还没有做出来」。</span>这是 2019 年 1 月公开课上描述的方向，不是当场已经上线的能力。本期按他当时的表述来讲，不补写后来企业微信有没有做成「对话底部的企业服务菜单」。</p></li>
+      <li><p><span class="pm-lead">文字稿里的用词原样保留。</span>如「看到在的企业微信里纳一个包含微信用户的群」「定一个机票」，疑似笔误，按整理稿不改写。「只有当他延伸到企业外部的时候，他会产生更大的价值」里的「他」，也按整理稿原样引用。</p></li>
+    </ul>
+  </section>
+  <section class="pm-part" id="p-3">
+    <p class="pm-label">核心观点</p>
+    <ol class="pm-pts">
+      <li><p><span class="pm-lead">他把企业微信的价值，放在「延伸到企业外部」，而不是先把它做成更好的内部沟通工具。</span>他说，如果定位只是公司内部的沟通工具，场景和意义会小很多；只有延伸到企业外部，才会产生更大的价值。值得了解的这一点，当时还没有做出来。</p></li>
+      <li><p><span class="pm-lead">跟微信打通已经在发生，但他同时强调：互通要设限，而且限制是有意的。</span>当时微信里已经可以加到企业微信的好友。在服务上，他们以用户为第一，所以对包含微信用户的群暂时有限制。他觉得这样的限制也是好的，并不想让互通带来很多负面效果。</p></li>
+      <li><p><span class="pm-lead">正在尝试的方向，被他称为「人就是服务」。</span>他先举订机票的例子：去一个 App 完成预订往往很简单，但要改时间、延期或退订时却很复杂，有可能得通过电话客服才能做完。</p></li>
+      <li><p><span class="pm-lead">快递员的例子，说的是没有身份认证背书的联系人，加了也留不住。</span>每次送快递都要加一次快递员，加了很多，下次仍然不知道该联系谁，因为这些人很可能已经离职，背后没有身份认证的背书。</p></li>
+      <li><p><span class="pm-lead">微商能存在，在他看来是因为交易里先有了人的背书。</span>朋友圈里微商信息很多。他的解释是：微商基于现实里类似线下社交关系，先获得了人的背书；人在交易里起的作用特别大。在朋友圈里看到一个微商可能会去买，在 App 里看到商店有同样的东西，却不一定会买，因为那里没有人背书。</p></li>
+      <li><p><span class="pm-lead">4S 店的例子，是把前面几条收成一个产品方向：把企业服务接到这个被认证的人身上。</span>车出了问题要去 4S 店时，选择可以是店员的微信、店的小程序、App 或网页；如果加过这个店员，大多数人会直接找这个人，因为跟人交互比其他入口更方便。他接着提醒：这个店员是企业微信用户，是这家企业认证过的，背后本应包含着企业服务。公众号的对话窗口底部已经有服务菜单；他设想，在微信里点开一个企业微信联系人的对话，底部也可以有企业的服务菜单，把企业服务连接到这个人身上，带给微信用户。这样，这个人就代表了这家企业的服务。将来要做的方向，是让每个员工可以直接提供服务，并且因为人的背书，客户对店背后的服务和人都会更加认可。</p></li>
+    </ol>
+  </section>
+  <section class="pm-part" id="p-4">
+    <p class="pm-label">对 PM 的启发</p>
+    <ul class="pm-tips">
+      <li><p><span class="pm-lead">内部工具做得再完整，也不自动等于产品的上限。</span>他判断企业微信的更大价值，不在把公司内部沟通再做一遍，而在能不能延伸到企业外部。对 PM 来说，先问「它现在被用在哪」，再问「它本可以连到哪」，这是两件不同的事。</p></li>
+      <li><p><span class="pm-lead">打通不是把限制全部拆掉。</span>微信和企业微信已经开始互通，他却专门解释：对包含微信用户的群设限，是因为以用户为第一，不想让互通带出负面效果。连接可以做，边界仍然要设计。</p></li>
+      <li><p><span class="pm-lead">用户要找的，常常是一个能被找到、也能被追认的人，而不是又一个入口。</span>改机票、退订，难的不是下单，而是出了问题之后找谁。快递员加了很多却用不上，是因为人走了，背后没有身份认证。微商能促成交易，也是因为先有了人的背书。</p></li>
+      <li><p><span class="pm-lead">「人就是服务」不是把客服入口做得更显眼，而是让已经被加过的、经过企业认证的人，背后真的接得上企业的能力。</span>他观察到，加过店员之后，人们更常找这个人，而不是去找小程序、App 或网页。产品要做的，是承认这个习惯，再把菜单和服务接到这个人身上，而不是再造一个需要重新被找到的入口。</p></li>
+      <li><p><span class="pm-lead">还没做出来的方向，也可以先把模式说清楚。</span>他没有把「人就是服务」讲成已经上线的功能，而是用公众号底部菜单作类比，说明将来想在对话里做成什么样。对 PM 更有用的，往往不是先宣布一个新品牌名，而是先说清：服务将连接在谁身上、用户在哪一个界面里能用到它。</p></li>
+    </ul>
+  </section>
+  <section class="pm-part" id="p-5">
+    <p class="pm-label">下期预告</p>
+    <p class="pm-text">连载第 25 期：十亿用户关口，用户数不是重点；广州「附近」试点；下一个八年的挑战；做事要问「意义」而不是 KPI。完整分期计划见内部清单。</p>
+  </section>
+</article>
+<div class="sec-head" id="s-2">
+  <span class="lbl"><span class="zh-lbl">近期</span></span>
+</div>
+<div class="sec-sum"><p class="pm-sum">过去一周的精读与简讯</p></div>
+
+<article class="entry pm-entry pm-deep" id="r1" data-entry-id="r1">
+  <div class="pm-entry-head">
+    <p class="name">研发团队最后只剩两个产品经理<span class="src">菜根老谭</span></p>
+    <button type="button" class="r-mark-here" data-entry-id="r1" aria-pressed="false" aria-label="标记读到这里，R1">标记读到这里</button>
+  </div>
+  <p class="pm-src">人人都是产品经理，作者菜根老谭（文末标注微信公众号：菜根老谭），2026-11-26。</p>
+  <p class="pm-note"><span class="pm-k">依据</span>已读完该文全文。文中「往后整个产品研发团队，可能两个产品经理就够了」，是作者转述一位老领导提到的、其前东家一些负责人的判断，不是某家公司已经公布的编制方案。「两个多月、一百多亿 Token，产品从需求到上线，代码我基本没手写」，以及「早年带过上百人的研发团队」，都是作者对自己实践的叙述。本期按作者自己的叙述转述，不把这些句子当作已核实的行业数据或某家公司的组织调整公告。</p>
+  <p class="pm-label">核心观点</p>
+  <ol class="pm-pts">
+    <li><p>**文章从一个判断起笔：往后一个产品研发团队，可能两个产品经理就够了。** 作者写到，一位老领导说，他以前待过的那家公司，现在技术团队、研发团队由产品经理负责；往后再规划，整个产品研发团队可能两个产品经理就够。作者没有把这句话当成夸张，因为他觉得这和自己这两年反复讲、也写进书里的判断撞在了一起：一个坐在办公室里算成本的人，和一个坐在桌前写书的人，得出了同一个结论。</p></li>
+    <li><p>**他并不否认对 AI 编程的那些抱怨，但认为真正该问的，不是「会不会替代程序员」，而是「已经替代到哪一层」。** 生成的代码没法直接用、改起来更慢、一到复杂业务就露馅，这些抱怨在他看来都有真的部分：AI 写的代码要人看、要人改，接手十年前的老系统时也会犯迷糊，它也不会替人承担责任，更不会在凌晨三点处理线上告警。但另一边，他认为它的下限已经越过了「初中级程序员能干的那条活」。他自己的产品研发完全依赖 AI 编程：两个多月、一百多亿 Token，产品从需求到上线，代码基本没手写。每天做的是判断需求、排优先级、把事拆成具体任务、自己跑一遍流程、验收对不对。这五件事里，没有一件是写代码。</p></li>
+    <li><p>**被压平的，在他看来不是「写代码」本身，而是中间那层只负责「翻译」的环节。** 他把初中级程序员一天的活摊开：理解产品经理要做什么，再翻成表结构、接口、页面和逻辑，然后调通、改 bug。核心动作是把人的意图翻成机器能执行的东西。AI 最擅长的恰好是这种翻译：说得越清楚，它翻得越快、越全、越不容易漏。压平之后，链条没有断，只剩两头：说清楚要做什么，以及判断做成什么样算好。沿链站着的岗位，境遇因此不一样：前端、后端、测试如果只接「把需求翻成实现」这一段，最容易被压平；技术负责人和架构管的是选哪条路、以后怎么改，判断还在，但一个人加上 AI，就不太需要很多人在旁边配合；产品经理站在「要做什么」这一头，离客户和钱最近，翻译层没了，判断反而成了整条链上最贵的部分。这个差别不是谁更聪明，是站位。</p></li>
+    <li><p>**岗位不是被裁掉的，是被任务减掉的。** 他早年带过上百人的研发团队，一有活，第一反应是把人叫来，把活分下去；每个人只干自己那一段，干完往后丢。现在他一个人做事，没人可叫，想不出来的只能自己去想，不会的只能自己去挖。两相对照，他觉得很多岗位之所以还在，不是因为那些活非有人干不可，而是因为下一个人还在。只要下一个环节还有人接着，这一段就会被推过去——让产品经理把东西开发出来，他会说这不是我的事，有开发。这话没错，因为当时确实有开发。当 AI 把「写」这一段接走之后，「有开发」就不成立了，活还在，接的人没了，这段活只能回到提需求的人手里。所以「两个产品经理就够了」，在他看来不是老板拍脑袋砍编制，而是链上真正剩下的活只有那么多，而剩下的那些活，恰好长在产品的判断上。</p></li>
+    <li><p>**技术正在变成一项基本技能，真正稀缺的是离钱更近的四样东西。** 他的类比是：二十年前会用电脑办公是加分项，十年前能写 SQL、自己搭系统是硬门槛；现在把需求说清楚，AI 可以很快搭出来。技术一直在往下沉，沉到最后会变成水电一样的基础设施；人人都会之后，它就不再是筹码，只是入场券。一个人能顶一支队伍，靠的也不是代码写得比别人快。他在书里反复讲的四样是：产品思维，知道该做什么、更知道不该做什么，找出做了之后客户愿意付钱的点；用户思维，知道是谁、在什么场景下、为什么愿意掏这笔钱——他举过自己的例子，做了一年才想明白有些客户不续费，不是系统不好用，是线上业务根本没跑起来，答案在客户的抱怨里，不在代码里；营销，让别人知道、相信并愿意试一次；运营，让人留下来、再来。技术是「怎么做」，这四样是「做什么、给谁、怎么卖、怎么活下去」。给一人公司的排序，他写成：销售 &gt; 运营 &gt; 产品 &gt; 技术。技术排在最后，不是没用，是它成了地基；地基重要，但没人会为地基多付钱。</p></li>
+    <li><p>**写给技术人的挪法，是往需求端、交付端或经营端走，并且学会算账。** 往需求端：别等别人写好需求文档，主动问客户最烦的是哪一步，问完还能立刻做出东西给人看。往交付端：企业里更缺的是能把 AI 装进业务流程里的人，既要懂技术，又要懂业务，这是他认为 FDE 变得抢手的原因。往经营端：把能力做成能被复制的模板、流程或小工具；只在自己身上生效的能力，人一停下来就归零。不论走哪条，都要能算清：这个功能上线之后，客户省了几个人、快了多少天、多接了几个单。算不出来，就只是成本；算得出来，才是价值。成本中心如果讲不清自己创造了多少价值，就很难被重视。他最后收的一句是：技术是入场券，不是护城河；真正护住你的，是能不能判断做什么、卖给谁、怎么活下去。从下一个需求开始，别只问「怎么做」，多问「为什么要做、谁会买单」。</p></li>
+  </ol>
+  <p class="pm-label">对 PM 的启发</p>
+  <p class="pm-text">- **「AI 会不会替代谁」容易把讨论停在立场上；更可操作的问题是，中间那层只负责翻译的活，还剩多少。** 还在的活，并不自动等于还需要原来那么多人来接。 - **产品经理的贵，不来自会不会写代码，而来自「要做什么」和「做成什么样算好」这两头还没法外包。** 写这一段被接走之后，判断不会跟着变便宜。 - **「这不是我的事，有开发」成立的前提，是后面真的还有人接。** 这个前提一旦不在，需求提出人就要把拆任务、跑流程和验收一起扛回来。 - **技术变成入场券之后，仍然要会用，只是它不再单独构成护城河。** 更需要补上的，往往是谁会买单、怎么让它转下去，以及能不能把价值算给别人看。 - **「两个产品经理就够了」是作者转述的一种判断，不是已经完成的组织方案。** 对 PM 更有用的，是顺着这条判断去检查自己团队里，哪些环节还只是在做翻译，哪些判断仍然无人负责。</p>
+  <p class="pm-links"><a href="https://www.woshipm.com/share/6500633.html">原文</a></p>
+</article>
+<article class="entry pm-entry pm-deep" id="r2" data-entry-id="r2">
+  <div class="pm-entry-head">
+    <p class="name">把“供给”当需求做：个人AI助理的五个产品决策<span class="src">李大伟笔记</span></p>
+    <button type="button" class="r-mark-here" data-entry-id="r2" aria-pressed="false" aria-label="标记读到这里，R2">标记读到这里</button>
+  </div>
+  <p class="pm-src">人人都是产品经理，作者李大伟笔记，2026-11-25。</p>
+  <p class="pm-note"><span class="pm-k">依据</span>已读完该文全文。文中关于 Muse、蚂蚁灵光、豆包手机助手 SAEP、Instinct，以及中金、摩根士丹利、QuestMobile 等测算和下载、留存、广告收入数字，都是作者引用或转述的二手材料，本期未逐项向原始数据源复核。文末列出的参考包括张小珺《商业访谈录》第 157 期（嘉宾蔡伟，2026-11-18）、Meta 官方博客、36 氪、量子位智库、Tech 星球、界面新闻、虎嗅和每日经济新闻等。本期按作者自己的叙述和引用转述，不把这些数字当作本刊独立核实后的行业通案。</p>
+  <p class="pm-label">核心观点</p>
+  <ol class="pm-pts">
+    <li><p>**他要回答的问题，不是模型够不够聪明，而是个人助理有没有「把事办完」的资格。** 文章从一个评审会上的需求写起：「让助理帮我处理退款。」追问三句就卡住了——退谁的款、走哪个平台、失败由谁承担。三个问题都指向同一处：这件事最终要落到别人的服务里，而那个服务不一定会配合。他把热度、留存和拒绝三组数字放在一起，得出的结论是：这个品类不缺注意力，缺的是交付资格，而交付资格不在模型里。11 月 18 日，张小珺和蚂蚁灵光负责人蔡伟的访谈把框架拆成智能、供给、安全可信；他认同这个拆法，但不认同排序。按他看到的数据，顺序应该反过来：智能是入场券，供给是门槛，安全是护城河，同时也是成本。</p></li>
+    <li><p>**Muse 和灵光的卡点，在他看来都不在模型，而在能不能真的碰到服务。** Muse 走的是让浏览器「像人一样」去点网页。他写到，这条路在美国跑通了一半，但第 12 天亚马逊封掉了它的代购权限，理由是未披露 AI 身份、抓取账号凭证；在他看来，表面是合规，底层是广告和「谁有权替用户上网」。灵光 1.0 押的是「人人有自己的 Coding Agent」，适合边界清晰、逻辑简单、低频使用的场景，可用户拿到答案，需求就结束了，留存撑不住；2.0 把主线改成「帮你管事情」，接上跨会话记忆、长程调度、连接器和独立云主机。他写到，这不是一次升级，是重新下注。2.0 的实测卡点也很具体：想推荐外卖，调不到淘宝闪购的实时店铺数据；想比价，查询接口没开放；连蚂蚁森林收能量这种自家生态里的轻任务，也没有对应权限。</p></li>
+    <li><p>**他把这套系统拆成四层、十二个部件，用来分清每个部件到底解决什么问题。** 智能层包括大模型、Agent 框架和跨会话记忆：大模型负责理解和规划，他认为这一层已经商品化，决定下限，不决定胜负；框架解决「会不会做」，不解决「让不让做」，所以最容易做出漂亮的 demo，也最容易在真实环境里翻车；跨会话记忆则是长任务中断后不从零开始的前提。供给层是最卡住的一层：开放 API 最理想，但超级 App 大多不给第三方「代操作」级接口；连接器是合作式供给，意义不在数量，而在只有这条路径能上线、能承担责任；SAEP 想把代操作变成可公示、可授权、可拒绝的事，大量应用拒绝，说明协议有效，也说明平台并不打算让路；浏览器自动化覆盖广，却随时会被封，而且封的理由往往不是技术，是商业。安全层里，他特别提到独立虚拟机、高风险动作前的审批、一次性虚拟卡，以及可录、可查、可解释的回放；他认为一次性虚拟卡比「安全承诺」文案更值得抄，而用户第一次扣错钱时能不能说清是哪一步出了问题，决定了他还敢不敢用第二次。商业层上，他把按成交抽佣、订阅配额和补贴放在一起，结论很朴素：用得越狠，亏得越多；补贴能买到「试一次」，买不到「交给我管」。</p></li>
+    <li><p>**五个产品决策，都是从「供给」往回推，而不是先选模型。** 决策一，先画供给地图，再选模型：每个待办服务放进四个格子——有开放接口并能签协议、只有合作关系、只能页面自动化、完全拿不到。四个格子填完，产品边界才出来；如果核心链路每一步都要跳回别人的 App 收尾，定位就应是「会办事的助理」，还不是「能闭环的管家」。决策二，把授权拆成只读、写入、支付三层，而不是一个开关；撤销之后已经执行的动作怎么办、未完成的事务怎么回滚、历史记录保留多久，不回答这些问题，授权界面就不成立。决策三，用「事务」而不是「对话」做产品对象。他以灵光 2.0 的「帮我管」列表为例：待确认、进行中、已结束、有变化，对应不同的用户动作和失败处理。每个事务至少要有一句当前状态的人话描述、一个「我现在能做什么」的主按钮，以及一条能看到每一步的执行记录。决策四，把指标从对话轮次和 DAU，换成未完成事务数、主动提醒打开率、授权留存率和复办率；同一类事第二次还找不找它，比下载曲线更能说明产品有没有用。决策五，用商业模式反推功能边界：哪些任务值得跑长流程，哪些做成一句话回答，哪些直接跳转给对方 App，要在设计文档里写清楚，而不是等上线后按投诉量回调。按次收费也被他提醒：单笔交付的毛利，撑不起要跑十几步、还带异常重试的长任务。</p></li>
+    <li><p>**灰度被他切成三段，每段都有退出条件；评审则先问六条。** 第一段只放一个高频、可逆、金额为零的场景，观察接口拒绝率、用户中途接管的比例、失败后重试的成功率，退出条件不是留存，而是接管率降到可接受区间。第二段把两个以上应用串成一条链，看断在权限、接口还是模型走错，并开始积累失败样本。第三段才放进支付、退订这类不可逆操作，指标换成误操作率和申诉率，而不是完成率。原则是：宁可少支持一件事，也不把一件支持不稳的事放出去。他准备带进评审的六问是：这件事最终落在哪个具体服务上，接口是开放的、合作的，还是页面自动化的；被拒绝时产品是解释、降级，还是引导用户自己完成；动作属于只读、写入还是支付，授权粒度和撤销路径写清楚了没有；事务状态有几个，卡在中间时用户看得到什么；成功指标是事务完成率还是对话轮次；单次交付的成本上限是多少，超了砍哪一段流程。六条里任何一条答不上来，这个需求在他看来，大概率会变成「演示很好看，上线没人用」。</p></li>
+    <li><p>**对接下来 12 个月，他给了三个判断，并把竞争收回到信任。** 他判断，供给会从页面自动化转向协议合作，而且会先从查订单、改预约、查物流这类只读或轻写入开始，真正的硬仗在支付和社交关系；他不认为会出现「中国版 Muse」，更可能的形态是「生态内管家」——一家平台把自己生态里的事办利索，而不是替用户横穿所有平台；收费方式会有一部分从订阅转向结果付费，但不会全转，能标准化、能计量的任务适合按结果收费，需要长期陪伴的场景只能订阅，产品设计要提前把两类分开。这三个判断里，第二个他最有把握，第一个最不确定。文末他用一个计算作收：20 步的任务，如果单步成功率是 95%，全部做对的概率只有约 36%。编程 Agent 写错代码，开发者还能改；生活 Agent 跑错流程，损失是真金白银。所以这个品类的竞争，最后不会落在「谁更聪明」，而会落在「谁更敢被信任」。信任不是文案，是可撤销的授权、可回放的过程、可解释的失败。对产品经理来说，这意味着把「供给」和「授权」当需求写，而不是当技术依赖。</p></li>
+  </ol>
+  <p class="pm-label">对 PM 的启发</p>
+  <p class="pm-text">- **「帮我把这件事办了」看起来像一句需求，其实先要问：这件事落在谁的服务上，对方让不让办，失败由谁承担。** 这三个问题答不上来，模型再强也没有交付资格。 - **先画供给地图，再选模型。** 有接口、靠合作、只能点页面、完全拿不到，四种路径对应不同的产品边界；把做不到的事说成「管家」，第一批用户会因为落差离开。 - **授权不是设置页里的一个开关，撤销和回放跟授权本身同样重要。** 用户第一次出错时，能不能看到是哪一步出了问题，决定他还敢不敢把下一件事交出去。 - **个人助理的产品对象应是事务，而不是对话。** 未完成、卡在哪、能不能再办一次，比轮次和下载更能说明它有没有用。 - **灰度要把不可逆的动作放在最后，并且先写退出条件。** 信任是一次性的；少支持一件事，往往比把一件支持不稳的事放出去更便宜。</p>
+  <p class="pm-links"><a href="https://www.woshipm.com/ai/6499308.html">原文</a></p>
+</article>
+<h3 class="pm-grp" id="g-brief">简讯</h3>
+<article class="entry pm-entry pm-brief" id="b-1" data-entry-id="b-1">
+  <div class="pm-entry-head">
+    <p class="name">携程<span class="src">2026-11-26</span></p>
+    <button type="button" class="r-mark-here" data-entry-id="b-1" aria-pressed="false" aria-label="标记读到这里，简讯 1">标记读到这里</button>
+  </div>
+  <p class="pm-text">新浪科技和观点网于 11 月 26 日报道，据称携程于 11 月 25 日向全员发布组织架构调整邮件。邮件内容显示，公司新设旅行体验事业部，由首席营销官孙波负责，转入的业务包括景点玩乐、金服、全球展演赛事、会员、私域体系、老友会以及全球战略伙伴项目组，由孙波统筹「用户出行中产品与服务资源」；市场营销与公共事务团队改向集团首席财务官王肖璠汇报；原酒店 CTO 向阳调任技术中心，向戴晓如汇报，负责「协调各业务线技术协同」，各事业部 CTO 改为同时向向阳和所在事业部 CEO 汇报。报道还写到，戴晓如自 2025 年 11 月起任技术中心总经理，2026 年 3 月晋升集团副总裁，并继续兼任技术中心总经理与技术委员会主席。关于调整原因，有接近人士称是为「加速推进 G2 战略」，一边优化市场营销资源配置，一边强化跨业务线技术协同，加强 AI 对产品创新、服务升级与效率提升的驱动。截至上述报道发稿，携程未就这次组织调整及人事安排作出回应。本期按这两篇对内部邮件的报道转述，不把未获公司确认的原因说明当作官方公告。 （观点网  ）</p>
+  <p class="pm-links"><a href="https://finance.sina.com.cn/jjxw/2026-11-26/doc-inizzwrf1460811.shtml">原文</a><a href="https://www.guandian.cn/article/20261126/633531.html">原文</a></p>
+</article>
+<article class="entry pm-entry pm-brief" id="b-2" data-entry-id="b-2">
+  <div class="pm-entry-head">
+    <p class="name">74Software<span class="src">2026-11-26</span></p>
+    <button type="button" class="r-mark-here" data-entry-id="b-2" aria-pressed="false" aria-label="标记读到这里，简讯 2">标记读到这里</button>
+  </div>
+  <p class="pm-text">企业软件集团 74Software（由 Axway 与 SBS 组成）于 11 月 26 日发布新闻稿，宣布在 SBS 提出一项组织效率方案，以继续把运营模型转向更精简、更以软件产品为中心。新闻稿写明：拟议措施可能影响 SBS 全球约 350 个岗位，最终范围、实施安排和时间表仍须履行适用的员工信息与咨询程序，并遵守各地法律规定；若全部实施，预计可产生税前每年 2,500 万至 3,000 万欧元的净节约，一次性实施成本约 3,500 万欧元税前，将在 2026 年计提，相关现金流出预计主要发生在 2027 年，节约将在 2027 年逐步释放，并于下半年达到全年运行水平。措施重点是把研发投入集中到核心软件平台、优化交付与支持，并简化组织和管理结构；该方案只针对 SBS，不影响 Axway。员工代表已获知该提议，SBS 表示将探讨内部流动和自愿离职等支持措施。公司还称，这些措施预计不影响 2026 年收入和经营利润率，对现金流的影响预计仍然有限。新闻稿本机 curl 返回 403，抓取工具可读到全文；本期以可打开的 Boursorama / Zonebourse 报道为链接。 （新闻稿  ）</p>
+  <p class="pm-links"><a href="https://www.boursorama.com/bourse/actualites/74software-envisage-une-reorganisation-de-sbs-touchant-environ-350-postes-dans-le-monde-1d110e56a700ba6274ba3eda76fa6535">原文</a><a href="https://www.globenewswire.com/news-release/2026/11/26/3410673/0/en/74software-announces-proposed-efficiency-measures-to-support-sbs-s-transformation.html">原文</a></p>
+</article>
+  <footer>
+    <div>PM DIGEST · 2026-11-27</div>
+  </footer>
+</div>
+<script>(function(){var ls=[].slice.call(document.querySelectorAll('.toc a[href^="#"]'));var ts=ls.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+function f(){var k=-1;for(var j=0;j<ts.length;j++){if(ts[j]&&ts[j].getBoundingClientRect().top<120)k=j;}ls.forEach(function(a,j){a.classList.toggle('on',j===k);});
+if(k>=0){var a=ls[k],t=a.closest('.toc');var r=a.getBoundingClientRect(),q=t.getBoundingClientRect();if(r.top<q.top||r.bottom>q.bottom)t.scrollTop+=r.top-q.top-q.height/2;}}
+addEventListener('scroll',f,{passive:true});f();})();</script>
+<script>
+/* PM Digest manual bookmark.
+   Only click handlers write to localStorage. Scroll, load, hash, and history must never save or overwrite.
+   One bookmark per browser: { date: 'YYYY-MM-DD', id: 'e-serial'|'rN'|'b-N'|... }. No account, no cross-device, no auto-jump.
+*/
+(function (root) {
+  var KEY = 'pmDigest.bookmark';
+  var DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+  var ID_RE = /^(e-\d+|e-serial|e-queue|r\d+|b-\d+|p-\d+)$/;
+  var bound = false;
+  var storageAvailable = true;
+  var lastError = '';
+
+  function announce(msg) {
+    var el = root.document && document.querySelector('.r-bookmark-status');
+    if (el) el.textContent = msg || '';
+  }
+
+  function getStore() {
+    try {
+      return root.localStorage;
+    } catch (err) {
+      storageAvailable = false;
+      lastError = 'localStorage unavailable';
+      return null;
+    }
+  }
+
+  function normalize(raw) {
+    if (!raw || typeof raw !== 'object') return null;
+    var date = raw.date;
+    var id = raw.id;
+    if (typeof date !== 'string' || typeof id !== 'string') return null;
+    if (!DATE_RE.test(date) || !ID_RE.test(id)) return null;
+    return { date: date, id: id };
+  }
+
+  function read() {
+    lastError = '';
+    var store = getStore();
+    if (!store) return null;
+    var txt;
+    try {
+      txt = store.getItem(KEY);
+    } catch (err) {
+      storageAvailable = false;
+      lastError = 'read failed';
+      return null;
+    }
+    if (txt == null || txt === '') return null;
+    var parsed;
+    try {
+      parsed = JSON.parse(txt);
+    } catch (err) {
+      try { store.removeItem(KEY); } catch (e2) {}
+      return null;
+    }
+    var bm = normalize(parsed);
+    if (!bm) {
+      try { store.removeItem(KEY); } catch (e2) {}
+      return null;
+    }
+    return bm;
+  }
+
+  function write(bm) {
+    lastError = '';
+    var norm = normalize(bm);
+    if (!norm) {
+      lastError = 'invalid bookmark';
+      return false;
+    }
+    var store = getStore();
+    if (!store) {
+      announce('无法保存书签，浏览器可能禁用了本地存储');
+      return false;
+    }
+    try {
+      store.setItem(KEY, JSON.stringify(norm));
+      storageAvailable = true;
+      announce('已标记到 ' + norm.date + ' ' + entryLabel(norm.id));
+      return true;
+    } catch (err) {
+      storageAvailable = false;
+      lastError = 'write failed';
+      announce('无法保存书签，浏览器可能禁用了本地存储');
+      return false;
+    }
+  }
+
+  function clear() {
+    lastError = '';
+    var store = getStore();
+    if (!store) {
+      announce('无法清除书签，浏览器可能禁用了本地存储');
+      return false;
+    }
+    try {
+      store.removeItem(KEY);
+      storageAvailable = true;
+      announce('已清除标记');
+      return true;
+    } catch (err) {
+      storageAvailable = false;
+      lastError = 'clear failed';
+      announce('无法清除书签，浏览器可能禁用了本地存储');
+      return false;
+    }
+  }
+
+  function pageDate() {
+    var doc = root.document;
+    if (doc) {
+      var marked = doc.querySelector('[data-digest-date]');
+      if (marked) {
+        var d = marked.getAttribute('data-digest-date');
+        if (d && DATE_RE.test(d)) return d;
+      }
+    }
+    var path = (root.location && root.location.pathname) || '';
+    var m = path.match(/digest-(\d{4}-\d{2}-\d{2})\.html$/);
+    if (m) return m[1];
+    if (root.DIGEST_ARCHIVE && root.DIGEST_ARCHIVE.length && root.DIGEST_ARCHIVE[0].d) {
+      return root.DIGEST_ARCHIVE[0].d;
+    }
+    return '';
+  }
+
+  function entryLabel(id) {
+    if (!id) return '';
+    if (/^e-\d+$/.test(id)) return '第 ' + id.slice(2) + ' 条';
+    if (id === 'e-serial') return '连载';
+    if (id === 'e-queue') return '连载顺序';
+    if (/^r\d+$/.test(id)) return id.toUpperCase();
+    if (/^b-\d+$/.test(id)) return '简讯 ' + id.slice(2);
+    if (/^p-\d+$/.test(id)) return '第 ' + id.slice(2) + ' 节';
+    return id;
+  }
+  function entryNum(id) { return entryLabel(id); }
+
+  function attachTag(li, bm) {
+    li.classList.add('r-has-bookmark');
+    var slot = document.createElement('span');
+    slot.className = 'r-bookmark-slot';
+    var link = document.createElement('a');
+    link.className = 'r-last-read';
+    link.href = 'digest-' + bm.date + '.html#' + bm.id;
+    link.textContent = '上次读到';
+    link.setAttribute('aria-label', '上次读到 ' + bm.date + ' ' + entryLabel(bm.id));
+    var clr = document.createElement('button');
+    clr.type = 'button';
+    clr.className = 'r-clear-mark';
+    clr.textContent = '清除';
+    clr.setAttribute('aria-label', '清除阅读书签');
+    slot.appendChild(link);
+    slot.appendChild(clr);
+    li.appendChild(slot);
+  }
+
+  function paintRail(bm) {
+    var doc = root.document;
+    if (!doc) return;
+    var lis = doc.querySelectorAll('.rail .a-list li, .arch-m .a-list li');
+    for (var i = 0; i < lis.length; i++) {
+      lis[i].classList.remove('r-has-bookmark');
+      var old = lis[i].querySelector('.r-bookmark-slot');
+      if (old) old.parentNode.removeChild(old);
+    }
+    if (!bm) return;
+    var nodes = doc.querySelectorAll('.rail .a-list li[data-date="' + bm.date + '"], .arch-m .a-list li[data-date="' + bm.date + '"]');
+    for (var j = 0; j < nodes.length; j++) attachTag(nodes[j], bm);
+  }
+
+  function paintEntries(bm) {
+    var doc = root.document;
+    if (!doc) return;
+    var date = pageDate();
+    var entries = doc.querySelectorAll('article[data-entry-id]');
+    for (var i = 0; i < entries.length; i++) {
+      var art = entries[i];
+      var id = art.getAttribute('data-entry-id');
+      var on = !!(bm && bm.date === date && bm.id === id);
+      art.classList.toggle('r-bookmarked', on);
+      var btn = art.querySelector('.r-mark-here');
+      if (!btn) continue;
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      if (on) {
+        btn.textContent = '清除标记';
+        btn.setAttribute('aria-label', '清除标记，' + entryLabel(id));
+      } else {
+        btn.textContent = '标记读到这里';
+        btn.setAttribute('aria-label', '标记读到这里，' + entryLabel(id));
+      }
+    }
+  }
+
+  function paint() {
+    var bm = read();
+    paintRail(bm);
+    paintEntries(bm);
+    return bm;
+  }
+
+  function onMarkClick(btn) {
+    var id = btn.getAttribute('data-entry-id');
+    var date = pageDate();
+    if (!id || !DATE_RE.test(date) || !ID_RE.test(id)) return;
+    var bm = read();
+    if (bm && bm.date === date && bm.id === id) clear();
+    else write({ date: date, id: id });
+    paint();
+  }
+
+  function onDocumentClick(ev) {
+    var t = ev.target;
+    if (!t || !t.closest) return;
+    var mark = t.closest('.r-mark-here');
+    if (mark) {
+      ev.preventDefault();
+      onMarkClick(mark);
+      return;
+    }
+    var clr = t.closest('.r-clear-mark');
+    if (clr) {
+      ev.preventDefault();
+      clear();
+      paint();
+    }
+  }
+
+  function bind() {
+    if (bound || !root.document) return;
+    root.document.addEventListener('click', onDocumentClick);
+    bound = true;
+  }
+
+  function init() {
+    bind();
+    paint();
+    /* Do not scroll, do not change location, do not write storage on load. */
+  }
+
+  var api = {
+    KEY: KEY,
+    read: read,
+    write: write,
+    clear: clear,
+    pageDate: pageDate,
+    paint: paint,
+    init: init,
+    bind: bind,
+    normalize: normalize,
+    get lastError() { return lastError; },
+    get storageAvailable() { return storageAvailable; },
+    get bound() { return bound; }
+  };
+
+  root.ReadingBookmark = api;
+  root.PMBookmark = api;
+  /* Script is inlined at the end of the page; required nodes already exist. Init now.
+     Do not wait for DOMContentLoaded — and never write storage or jump on init. */
+  if (root.document) init();
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+</body>
+</html>
